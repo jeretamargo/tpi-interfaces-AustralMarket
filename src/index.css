@@ -1,1 +1,14 @@
 @import "tailwindcss";
+@import "@fontsource-variable/nunito-sans";
+@import "@fontsource-variable/rubik";
+@import "@fontsource-variable/reddit-mono";
+
+@theme {
+  --font-nunito: "Nunito Sans", sans-serif;
+}
+@theme {
+  --font-rubik: "Rubik", sans-serif;
+}
+@theme {
+  --font-reddit-mono: "Reddit Mono", sans-serif;
+}
