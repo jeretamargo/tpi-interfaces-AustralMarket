@@ -4,11 +4,20 @@
 @import "@fontsource-variable/reddit-mono";
 
 @theme {
-  --font-nunito: "Nunito Sans", sans-serif;
+  --font-texto: "Nunito Sans", sans-serif;
+  --font-titulo: "Rubik", sans-serif;
+  --font-numeros: "Reddit Mono", monospace;
 }
+
 @theme {
-  --font-rubik: "Rubik", sans-serif;
-}
-@theme {
-  --font-reddit-mono: "Reddit Mono", sans-serif;
+  --azul-oscuro: #022036;
+  --azul: #092d4a;
+  --celeste: #1d7584;
+  --naranja: #e48c25;
+  --blanco: #fcfeff;
+  --rojo: #ac0606;
+  --verde: #06ac17;
+  --sin-presionar: #d9d9d9;
+  --warning: #ffdd00;
+  --hover-btn: #009fba;
 }
