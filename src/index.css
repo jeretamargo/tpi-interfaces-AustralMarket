@@ -10,14 +10,14 @@
 }
 
 @theme {
-  --azul-oscuro: #022036;
-  --azul: #092d4a;
-  --celeste: #1d7584;
-  --naranja: #e48c25;
-  --blanco: #fcfeff;
-  --rojo: #ac0606;
-  --verde: #06ac17;
-  --sin-presionar: #d9d9d9;
-  --warning: #ffdd00;
-  --hover-btn: #009fba;
+  --color-azul-oscuro: #022036;
+  --color-azul: #092d4a;
+  --color-celeste: #1d7584;
+  --color-naranja: #e48c25;
+  --color-blanco: #fcfeff;
+  --color-rojo: #ac0606;
+  --color-verde: #06ac17;
+  --color-sin-presionar: #d9d9d9;
+  --color-warning: #ffdd00;
+  --color-hover-btn: #009fba;
 }
