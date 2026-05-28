@@ -1,11 +1,10 @@
 import React from "react";
+import Header from "../components/Header";
 
 export default function Login() {
   return (
-    <div>
-      <h1 className="font-titulo font-extrabold text-naranja">
-        Austral Market
-      </h1>
+    <div className="bg-azul-oscuro">
+      <Header />
     </div>
   );
 }
