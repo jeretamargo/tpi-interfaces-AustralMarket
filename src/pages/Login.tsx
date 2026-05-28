@@ -3,7 +3,7 @@ import Header from "../components/Header";
 
 export default function Login() {
   return (
-    <div>
+    <div className="bg-azul-oscuro">
       <Header />
     </div>
   );
