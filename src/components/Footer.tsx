@@ -4,10 +4,10 @@ function Footer() {
   return (
     <div className="bg-azul-oscuro flex flex-col   justify-around gap-4 py-5">
       <div className="flex flex-col items-center">
-        <h2 className="font-titulo text-naranja font-extrabold">
+        <h2 className="font-titulo text-2xl text-naranja font-extrabold">
           AUSTRAL MARKET
         </h2>
-        <h3 className="font-texto text-blanco">Soporte</h3>
+        <h3 className="font-texto text-xl text-blanco font-bold">Soporte</h3>
       </div>
       <div className="flex flex-col md:flex-row  gap-4 md:justify-between px-10">
         <div className="flex gap-2  ">
