@@ -4,7 +4,7 @@
 @import "@fontsource-variable/reddit-mono";
 
 @theme {
-  --font-texto: "Nunito Sans", sans-serif;
+  --font-texto: "Nunito Sans Variable", sans-serif;
   --font-titulo: "Rubik", sans-serif;
   --font-numeros: "Reddit Mono", monospace;
 }
