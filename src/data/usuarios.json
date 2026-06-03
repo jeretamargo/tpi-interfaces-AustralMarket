@@ -1,0 +1,22 @@
+[
+  {
+    "email": "admin@australmarket.com",
+    "password": "admin123",
+    "nombre": "Admin"
+  },
+  {
+    "email": "jere@australmarket.com",
+    "password": "jere123",
+    "nombre": "Jeremías"
+  },
+  {
+    "email": "marcos@australmarket.com",
+    "password": "marcos123",
+    "nombre": "Marcos"
+  },
+  {
+    "email": "seba@australmarket.com",
+    "password": "seba123",
+    "nombre": "Sebastián"
+  }
+]
