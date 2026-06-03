@@ -2,21 +2,29 @@
   {
     "email": "admin@australmarket.com",
     "password": "admin123",
-    "nombre": "Admin"
+    "rol": "ADMIN",
+    "nombre": "ADMIN",
+    "foto": "photos/chinita.png"
   },
   {
     "email": "jere@australmarket.com",
     "password": "jere123",
-    "nombre": "Jeremías"
+    "rol": "EMPLEADO",
+    "nombre": "Jeremías",
+    "foto": "photos/jere.jpg"
   },
   {
     "email": "marcos@australmarket.com",
     "password": "marcos123",
-    "nombre": "Marcos"
+    "rol": "EMPLEADO",
+    "nombre": "Marcos",
+    "foto": "photos/mark.jpg"
   },
   {
     "email": "seba@australmarket.com",
     "password": "seba123",
-    "nombre": "Sebastián"
+    "rol": "EMPLEADO",
+    "nombre": "Sebastián",
+    "foto": "photos/seba.jpg"
   }
 ]
