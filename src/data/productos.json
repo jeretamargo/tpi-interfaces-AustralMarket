@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1,
+		"nombre": "Producto 1",
+		"categoria": "Electrónica",
+		"precio": 299.99,
+		"stock": 50,
+		"estado": "Disponible"
+	},
+	{
+		"id": 2,
+		"nombre": "Producto 2",
+		"categoria": "Hogar",
+		"precio": 199.99,
+		"stock": 80,
+		"estado": "Disponible"
+	},
+	{
+		"id": 3,
+		"nombre": "Producto 3",
+		"categoria": "Oficina",
+		"precio": 399.99,
+		"stock": null,
+		"estado": "Agotado"
+	},
+	{
+		"id": 4,
+		"nombre": "Producto 4",
+		"categoria": "Herramientas",
+		"precio": 89.99,
+		"stock": 100,
+		"estado": "Disponible"
+	},
+	{
+		"id": 5,
+		"nombre": "Producto 5",
+		"categoria": "Dispositivos",
+		"precio": 49.99,
+		"stock": 200,
+		"estado": "Desactivado"
+	}
+]
