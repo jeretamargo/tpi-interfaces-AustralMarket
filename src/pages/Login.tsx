@@ -20,48 +20,67 @@ export default function Login() {
     password: "",
   });
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  function handleLogin() {
-    let hasErrors = false;
-
-    setErrors({
-      email: "",
-      credentials: "",
-    });
-
-    setWarnings({
-      email: "",
-      password: "",
-    });
-
-    if (email.trim() === "") {
+  const [touched, setTouched] = useState({
+    email: false,
+    password: false,
+  });
+  function validateEmail(value: string) {
+    if (value.trim() === "") {
       setWarnings((prev) => ({
         ...prev,
         email: "El campo de correo electrónico no puede estar vacío",
       }));
 
-      hasErrors = true;
-    } else if (!emailRegex.test(email)) {
+      setErrors((prev) => ({
+        ...prev,
+        email: "",
+      }));
+
+      return;
+    }
+
+    if (!emailRegex.test(value)) {
       setErrors((prev) => ({
         ...prev,
         email:
           "Debe ingresar una dirección de correo válida. Ejemplo: usuario@email.com",
       }));
 
-      hasErrors = true;
+      setWarnings((prev) => ({
+        ...prev,
+        email: "",
+      }));
+
+      return;
     }
 
-    if (password.trim() === "") {
+    setErrors((prev) => ({
+      ...prev,
+      email: "",
+    }));
+
+    setWarnings((prev) => ({
+      ...prev,
+      email: "",
+    }));
+  }
+
+  function validatePassword(value: string) {
+    if (value.trim() === "") {
       setWarnings((prev) => ({
         ...prev,
         password: "El campo de contraseña no puede estar vacío",
       }));
-
-      hasErrors = true;
+      return;
     }
 
-    if (hasErrors) return;
+    setWarnings((prev) => ({
+      ...prev,
+      password: "",
+    }));
+  }
 
+  function handleLogin() {
     const usuario = usuarios.find((u) => u.email === email);
 
     if (!usuario || usuario.password !== password) {
@@ -103,14 +122,24 @@ export default function Login() {
             placeholder="Introduzca su correo electrónico"
             className={`bg-blanco text-black placeholder:text-gray-500 rounded-lg border-gray-300 focus:outline-none focus:ring-4 focus:ring-celeste w-75 h-8 px-3  ${errors.email ? "ring-rojo ring-4" : ""} ${errors.credentials ? "ring-rojo ring-4" : ""} ${warnings.email ? "ring-warning ring-4" : ""}  `}
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              setEmail(value);
+              validateEmail(value);
+            }}
+            onBlur={() =>
+              setTouched((prev) => ({
+                ...prev,
+                email: true,
+              }))
+            }
           />
           {errors.email && (
             <p className="text-naranja font-texto  text-center">
               {errors.email}
             </p>
           )}
-          {warnings.email && (
+          {touched.email && warnings.email && (
             <p className="text-naranja font-texto text-center">
               {warnings.email}
             </p>
@@ -121,7 +150,17 @@ export default function Login() {
               placeholder="Introduzca su contraseña"
               className={`bg-blanco text-black placeholder:text-gray-500 rounded-lg border-gray-300 focus:outline-none focus:ring-4 focus:ring-celeste w-75 h-8 px-3 ${errors.credentials ? "ring-rojo ring-4" : ""}  ${warnings.password ? "ring-warning ring-4" : ""} `}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                setPassword(value);
+                validatePassword(value);
+              }}
+              onBlur={() =>
+                setTouched((prev) => ({
+                  ...prev,
+                  password: true,
+                }))
+              }
             />
             <button
               type="button"
@@ -153,7 +192,7 @@ export default function Login() {
               {errors.credentials}
             </p>
           )}
-          {warnings.password && (
+          {touched.password && warnings.password && (
             <p className="text-naranja font-texto text-center">
               {warnings.password}
             </p>
