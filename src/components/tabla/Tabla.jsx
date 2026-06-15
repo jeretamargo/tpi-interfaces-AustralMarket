@@ -2,7 +2,7 @@ import HeaderCell from "./HeadTabla";
 import TablaItem from "./TablaItem";
 import { useState } from "react";
 
-export default function Tabla({ productos }) {
+export default function Tabla({ productos,onEditar  }) {
 	const [sortedData, setSortedData] = useState(productos);
 
 	const handleSort = (key, direction) => {
@@ -52,7 +52,11 @@ export default function Tabla({ productos }) {
 				</thead>
 				<tbody>
 					{sortedData.map((p) => (
-						<TablaItem key={p.id} producto={p} />
+						<TablaItem 
+						key={p.id} 
+						producto={p} 
+						onEditar={onEditar}
+						/>
 					))}
 				</tbody>
 			</table>
