@@ -77,7 +77,7 @@ export default function ProductoModal({
       nuevosErrores.precio = "El precio es obligatorio.";
       valido = false;
     } else if (isNaN(Number(form.precio)) || Number(form.precio) <= 0) {
-      nuevosErrores.precio = "El precio debe ser un número mayor a 0.";
+      nuevosErrores.precio = "El precio debe ser un numero positivo.";
       valido = false;
     }
 
@@ -89,7 +89,7 @@ export default function ProductoModal({
       Number(form.stock) < 0 ||
       !Number.isInteger(Number(form.stock))
     ) {
-      nuevosErrores.stock = "El stock debe ser un número entero no negativo.";
+      nuevosErrores.stock = "El stock debe ser un número positivo.";
       valido = false;
     }
 
@@ -150,8 +150,8 @@ export default function ProductoModal({
         <div className="bg-azul-oscuro px-8 py-5">
           <h2
             id="modal-titulo"
-            className="font-titulo text-blanco text-xl font-bold text-center tracking-widest"
-          >
+            className="font-titulo text-blanco text-[28px] font-normal text-center tracking-widest"    
+            >
             {titulo}
           </h2>
         </div>
@@ -185,12 +185,12 @@ export default function ProductoModal({
                 bg-blanco text-azul-oscuro placeholder:text-gray-400
                 border transition-colors
                 focus:border-celeste focus:ring-2 focus:ring-celeste/30
-                ${errores.nombre ? "border-rojo bg-red-50" : "border-transparent"}`}
+                ${errores.nombre ? "border-warning border-3" : "border-transparent"}`}
               aria-invalid={!!errores.nombre}
               aria-describedby={errores.nombre ? "error-nombre" : undefined}
             />
             {errores.nombre && (
-              <p id="error-nombre" className="text-rojo text-xs mt-1 flex items-center gap-1" role="alert">
+              <p id="error-nombre" className="text-warning text-xs mt-1 flex items-center gap-1" role="alert">
                 ⚠ {errores.nombre}
               </p>
             )}
@@ -228,7 +228,7 @@ export default function ProductoModal({
                 bg-blanco border transition-colors cursor-pointer
                 focus:border-celeste focus:ring-2 focus:ring-celeste/30
                 ${form.categoria ? "text-azul-oscuro" : "text-gray-400"}
-                ${errores.categoria ? "border-rojo" : "border-transparent"}`}
+                ${errores.categoria ? "border-warning border-3" : "border-transparent"}`}
               aria-invalid={!!errores.categoria}
               aria-describedby={errores.categoria ? "error-categoria" : undefined}
             >
@@ -240,7 +240,7 @@ export default function ProductoModal({
               ))}
             </select>
             {errores.categoria && (
-              <p id="error-categoria" className="text-rojo text-xs mt-1 flex items-center gap-1" role="alert">
+              <p id="error-categoria" className="text-warning text-xs mt-1 flex items-center gap-1" role="alert">
                 ⚠ {errores.categoria}
               </p>
             )}
@@ -264,12 +264,12 @@ export default function ProductoModal({
                   bg-blanco text-azul-oscuro placeholder:text-gray-400
                   border transition-colors
                   focus:border-celeste focus:ring-2 focus:ring-celeste/30
-                  ${errores.precio ? "border-rojo bg-red-50" : "border-transparent"}`}
+                  ${errores.precio ? "border-rojo border-3 bg-red-50" : "border-transparent"}`}
                 aria-invalid={!!errores.precio}
                 aria-describedby={errores.precio ? "error-precio" : undefined}
               />
               {errores.precio && (
-                <p id="error-precio" className="text-rojo text-xs mt-1 flex items-center gap-1" role="alert">
+                <p id="error-precio" className="text-warning text-xs mt-1 flex items-center gap-1" role="alert">
                   ⚠ {errores.precio}
                 </p>
               )}
@@ -291,12 +291,12 @@ export default function ProductoModal({
                   bg-blanco text-azul-oscuro placeholder:text-gray-400
                   border transition-colors
                   focus:border-celeste focus:ring-2 focus:ring-celeste/30
-                  ${errores.stock ? "border-rojo bg-red-50" : "border-transparent"}`}
+                  ${errores.stock ? "border-rojo border-3 bg-red-50" : "border-transparent"}`}
                 aria-invalid={!!errores.stock}
                 aria-describedby={errores.stock ? "error-stock" : undefined}
               />
               {errores.stock && (
-                <p id="error-stock" className="text-rojo text-xs mt-1 flex items-center gap-1" role="alert">
+                <p id="error-stock" className="text-warning text-xs mt-1 flex items-center gap-1" role="alert">
                   ⚠ {errores.stock}
                 </p>
               )}
@@ -311,21 +311,21 @@ export default function ProductoModal({
                 type="button"
                 onClick={() => handleChange("estado", "desactivado")}
                 aria-pressed={form.estado === "desactivado"}
-                className={`flex-1 max-w-[210px] py-3 rounded-full font-titulo font-bold text-sm tracking-widest transition-all
+                className={`flex-1 max-w-[180px] py-2 px-2 rounded-full font-titulo font-bold text-xs tracking-wider  transition-all
                   ${form.estado === "desactivado"
                     ? "bg-rojo text-blanco"
                     : "bg-azul-oscuro text-sin-presionar/50 opacity-60"
                   }`}
-              >
+              >   
                 DESACTIVADO
               </button>
               <button
                 type="button"
                 onClick={() => handleChange("estado", "disponible")}
                 aria-pressed={form.estado === "disponible"}
-                className={`flex-1 max-w-[210px] py-3 rounded-full font-titulo font-bold text-sm tracking-widest transition-all
+                className={`flex-1 max-w-[180px] py-2 px-2 rounded-full font-titulo font-bold text-xs tracking-wider  transition-all
                   ${form.estado === "disponible"
-                    ? "bg-celeste text-blanco"
+                    ? "bg-verde text-blanco"
                     : "bg-azul-oscuro text-sin-presionar/50 opacity-60"
                   }`}
               >
