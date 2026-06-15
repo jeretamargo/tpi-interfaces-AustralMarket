@@ -17,7 +17,7 @@ const HeaderLogeado = () => {
 					alt="Logo Austral Market"
 					className="h-16 w-16 rounded-full object-contain"
 				/>
-				<h1 className="font-titulo text-lg md:text-2xl font-extrabold text-azul">
+				<h1 className="font-titulo hidden md:text-2xl font-extrabold text-azul">
 					AUSTRAL MARKET
 				</h1>
 			</div>

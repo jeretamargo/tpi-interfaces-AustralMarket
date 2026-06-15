@@ -19,8 +19,8 @@ export default function Tabla({ productos }) {
 	};
 
 	return (
-		<div className="overflow-x-auto">
-			<table className="min-w-full border border-azul">
+		<div className="w-full ">
+			<table className="w-full border border-azul ">
 				<thead className="bg-azul">
 					<tr>
 						<HeaderCell
