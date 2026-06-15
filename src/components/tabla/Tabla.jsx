@@ -32,9 +32,20 @@ export default function Tabla({ productos }) {
 							label="Categoría"
 							sortKey="categoria"
 							onSort={handleSort}
+							className="hidden md:table-cell"
 						/>
-						<HeaderCell label="Precio" sortKey="precio" onSort={handleSort} />
-						<HeaderCell label="Stock" sortKey="stock" onSort={handleSort} />
+						<HeaderCell
+							label="Precio"
+							sortKey="precio"
+							onSort={handleSort}
+							className="hidden md:table-cell"
+						/>
+						<HeaderCell
+							label="Stock"
+							sortKey="stock"
+							onSort={handleSort}
+							className="hidden md:table-cell"
+						/>
 						<th className="px-4 py-2 text-left">Estado</th>
 						<th className="px-4 py-2 text-left">Acciones</th>
 					</tr>
