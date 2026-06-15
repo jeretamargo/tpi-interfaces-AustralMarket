@@ -11,13 +11,13 @@ const HeaderLogeado = () => {
 	return (
 		<div className="w-full px-5  bg-blanco flex items-center justify-between shadow-md">
 			{/* Logo + Nombre */}
-			<div className="flex items-center gap-4">
+			<div className="flex items-center gap-4 ">
 				<img
 					src="../../public/LOGO-AUSTRAL-MARKET.png"
 					alt="Logo Austral Market"
-					className="h-25 w-16 rounded-full"
+					className="h-16 w-16 rounded-full object-contain"
 				/>
-				<h1 className="font-titulo text-2xl font-extrabold text-azul">
+				<h1 className="font-titulo text-lg md:text-2xl font-extrabold text-azul">
 					AUSTRAL MARKET
 				</h1>
 			</div>
@@ -27,7 +27,7 @@ const HeaderLogeado = () => {
 				<img
 					src="../../public/foto-perfil.png"
 					alt="Foto de perfil"
-					className="h-14 w-14 rounded-full object-cover"
+					className="h-12 w-12 rounded-full object-cover"
 				/>
 				<div className="flex flex-col text-right">
 					<p className="font-texto text-lg text-celeste font-bold">ADMIN</p>
