@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "../components/Header";
+import HeaderLogeado from "../components/tabla/header-logeado";
 import Footer from "../components/Footer";
 import GestionProductos from "../components/tabla/Gestion";
 
 export default function ListaProdcutos() {
 	return (
 		<div>
-			<Header />
+			<HeaderLogeado />
 			<GestionProductos />
 			<Footer />
 		</div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function HeaderCell({ label, sortKey, onSort }) {
+export default function HeaderCell({ label, sortKey, onSort, className = "" }) {
 	const [direction, setDirection] = useState(null); // null, "asc", "desc"
 
 	const handleClick = () => {
@@ -14,7 +14,7 @@ export default function HeaderCell({ label, sortKey, onSort }) {
 	return (
 		<th
 			onClick={handleClick}
-			className="px-4 py-2 text-left cursor-pointer select-none"
+			className={`px-4 py-2 text-left cursor-pointer select-none ${className}`}
 		>
 			<div className="flex items-center gap-2">
 				<span>{label}</span>
