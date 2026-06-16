@@ -43,7 +43,7 @@ export default function Login() {
       setErrors((prev) => ({
         ...prev,
         email:
-          "Debe ingresar una dirección de correo válida. Ejemplo: usuario@email.com",
+          "Debe ingresar una dirección de correo válida. Ejemplo: usuario@australmarket.com",
       }));
 
       setWarnings((prev) => ({
@@ -80,7 +80,8 @@ export default function Login() {
     }));
   }
 
-  function handleLogin() {
+  function handleLogin(e: React.SubmitEvent<HTMLFormElement>) {
+    e.preventDefault();
     const usuario = usuarios.find((u) => u.email === email);
 
     if (!usuario || usuario.password !== password) {
@@ -116,36 +117,57 @@ export default function Login() {
             Accedé al sistema
           </h3>
         </div>
-        <div className="flex flex-col items-center mt-10 gap-5 mb-20">
-          <input
-            type="text"
-            placeholder="Introduzca su correo electrónico"
-            className={`bg-blanco text-black placeholder:text-gray-500 rounded-lg border-gray-300 focus:outline-none focus:ring-4 focus:ring-celeste w-75 h-8 px-3  ${errors.email ? "ring-rojo ring-4" : ""} ${errors.credentials ? "ring-rojo ring-4" : ""} ${warnings.email ? "ring-warning ring-4" : ""}  `}
-            value={email}
-            onChange={(e) => {
-              const value = e.target.value;
-              setEmail(value);
-              validateEmail(value);
-            }}
-            onBlur={() =>
-              setTouched((prev) => ({
-                ...prev,
-                email: true,
-              }))
-            }
-          />
-          {errors.email && (
-            <p className="text-naranja font-texto  text-center">
-              {errors.email}
-            </p>
-          )}
-          {touched.email && warnings.email && (
-            <p className="text-naranja font-texto text-center">
-              {warnings.email}
-            </p>
-          )}
-          <div className="relative items-center">
+        <form
+          className="flex flex-col items-center mt-10 gap-5 mb-20"
+          onSubmit={(e) => handleLogin(e)}
+        >
+          <div>
+            <label
+              htmlFor="email"
+              className="flex self-start text-blanco font-texto pb-1"
+            >
+              Correo electrónico
+            </label>
             <input
+              id="email"
+              type="text"
+              placeholder="usuario@australmarket.com"
+              className={`bg-blanco text-black placeholder:text-gray-500 rounded-lg border-gray-300 focus:outline-none focus:ring-4 focus:ring-celeste w-75 h-8 px-3  ${errors.email ? "ring-rojo ring-4" : ""} ${errors.credentials ? "ring-rojo ring-4" : ""} ${warnings.email ? "ring-warning ring-4" : ""}  `}
+              value={email}
+              onChange={(e) => {
+                const value = e.target.value;
+                setEmail(value);
+                validateEmail(value);
+              }}
+              onBlur={() =>
+                setTouched((prev) => ({
+                  ...prev,
+                  email: true,
+                }))
+              }
+            />
+          </div>
+          <div className="min-h-6">
+            {errors.email && (
+              <p className="text-naranja font-texto  text-center">
+                {errors.email}
+              </p>
+            )}
+            {touched.email && warnings.email && (
+              <p className="text-naranja font-texto text-center">
+                {warnings.email}
+              </p>
+            )}
+          </div>
+          <div className="relative items-center">
+            <label
+              htmlFor="password"
+              className="flex self-start text-blanco font-texto pb-1"
+            >
+              Contraseña
+            </label>
+            <input
+              id="password"
               type={isShowingPassword ? "text" : "password"}
               placeholder="Introduzca su contraseña"
               className={`bg-blanco text-black placeholder:text-gray-500 rounded-lg border-gray-300 focus:outline-none focus:ring-4 focus:ring-celeste w-75 h-8 px-3 ${errors.credentials ? "ring-rojo ring-4" : ""}  ${warnings.password ? "ring-warning ring-4" : ""} `}
@@ -172,7 +194,7 @@ export default function Login() {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className="absolute size-8 right-2 top-1/2 -translate-y-1/2  text-gray-500 hover:text-black transition-all  cursor-pointer "
+                className="absolute size-8 right-2 top-1/2 -translate-y-1  text-gray-500 hover:text-black transition-all  cursor-pointer "
               >
                 <path
                   stroke-linecap="round"
@@ -187,16 +209,18 @@ export default function Login() {
               </svg>
             </button>
           </div>
-          {errors.credentials && (
-            <p className="text-naranja font-texto  text-center">
-              {errors.credentials}
-            </p>
-          )}
-          {touched.password && warnings.password && (
-            <p className="text-naranja font-texto text-center">
-              {warnings.password}
-            </p>
-          )}
+          <div className="min-h-6">
+            {errors.credentials && (
+              <p className="text-naranja font-texto  text-center">
+                {errors.credentials}
+              </p>
+            )}
+            {touched.password && warnings.password && (
+              <p className="text-naranja font-texto text-center">
+                {warnings.password}
+              </p>
+            )}
+          </div>
           <div className="flex items-center">
             <input
               type="checkbox"
@@ -208,7 +232,7 @@ export default function Login() {
             </label>
           </div>
           <button
-            onClick={() => handleLogin()}
+            type="submit"
             className="bg-celeste text-2xl text-blanco font-texto font-bold mt-7 py-6 px-15 rounded hover:bg-hover-btn transition-all duration-300 cursor-pointer"
           >
             Acceder
@@ -216,7 +240,7 @@ export default function Login() {
           <a href="#">
             <p className="text-blanco font-texto">Olvidé mi contraseña</p>
           </a>
-        </div>
+        </form>
       </main>
       <footer>
         <Footer />
