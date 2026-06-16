@@ -140,14 +140,15 @@ export default function ProductoModal({
     >
       {/* Modal wrapper — sin padding, para que header y body tengan colores distintos */}
       <div
-        className="w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl"
+        className="rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+        style={{ width: "650px", height: "706px" }}
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-titulo"
       >
 
         {/* ── HEADER: azul-oscuro ── */}
-        <div className="bg-azul-oscuro px-8 py-5">
+        <div className="bg-azul-oscuro px-8 py-2">
           <h2
             id="modal-titulo"
             className="font-titulo text-blanco text-[28px] font-normal text-center tracking-widest"    
@@ -157,7 +158,8 @@ export default function ProductoModal({
         </div>
 
         {/* ── CUERPO: azul ── */}
-        <div className="bg-azul px-8 py-6 max-h-[75vh] overflow-y-auto">
+        <div className="bg-azul px-8 py-6 overflow-y-auto flex-1 flex flex-col">
+
 
           {/* Toast éxito */}
           {guardado && (
@@ -332,36 +334,34 @@ export default function ProductoModal({
                 DISPONIBLE
               </button>
             </div>
+          
           </div>
-
-          {/* Divider */}
-          <hr className="border-blanco/10 my-5" />
-
-          {/* Footer */}
-          <div className="flex gap-3">
-            <button
-              type="button"
-              onClick={handleCancelar}
-              className="flex-1 py-2 rounded-lg text-sm font-semibold font-texto
-                border border-celeste text-celeste bg-transparent
-                hover:bg-celeste/15 transition-colors"
-            >
-              Cancelar
-            </button>
-            <button
-              type="button"
-              onClick={handleGuardar}
-              disabled={guardado}
-              className="flex-1 py-2 rounded-lg text-sm font-semibold font-texto
-                bg-celeste text-blanco border-none
-                hover:bg-hover-btn disabled:opacity-60 transition-colors"
-            >
-              {guardado ? "Guardando..." : "Guardar"}
-            </button>
-          </div>
-
+          <div className="flex-1" />
         </div>
         {/* fin cuerpo azul */}
+          {/* ── FOOTER: azul-oscuro ── */}
+        <div className="bg-azul-oscuro px-8 py-4 flex gap-3 rounded-b-2xl ">
+          <button
+            type="button"
+            onClick={handleCancelar}
+            className="flex-1 py-2 rounded-lg text-sm font-semibold font-texto
+              border border-celeste text-celeste bg-transparent
+              hover:bg-celeste/15 transition-colors"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            onClick={handleGuardar}
+            disabled={guardado}
+            className="flex-1 py-2 rounded-lg text-sm font-semibold font-texto
+              bg-celeste text-blanco border-none
+              hover:bg-hover-btn disabled:opacity-60 transition-colors"
+          >
+            {guardado ? "Guardando..." : "Guardar"}
+          </button>
+        </div>
+        
       </div>
     </div>
   );
