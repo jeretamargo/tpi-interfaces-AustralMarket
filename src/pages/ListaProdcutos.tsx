@@ -1,14 +1,21 @@
 import React from "react";
 import HeaderLogeado from "../components/tabla/header-logeado";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 import GestionProductos from "../components/tabla/Gestion";
 
 export default function ListaProdcutos() {
 	return (
-		<div>
-			<HeaderLogeado />
-			<GestionProductos />
-			<Footer />
-		</div>
+		<>
+			<header>
+				<Header />
+			</header>
+			<main>
+				<GestionProductos />
+			</main>
+			<footer>
+				<Footer />
+			</footer>
+		</>
 	);
 }
