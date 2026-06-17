@@ -112,6 +112,8 @@ export default function GestionProductos() {
 				cerrarModal();
 				}}
 				onCancelar={cerrarModal}
+				categorias={categorias} //paso la categoria
+
 			/>
 			<Head onAgregarProducto={abrirNuevo}/>
 			<Tabs activeTab={activeTab} setActiveTab={setActiveTab} />

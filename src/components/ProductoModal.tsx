@@ -1,15 +1,6 @@
 import { useState, useEffect } from "react";
 
-const CATEGORIAS = [
-  "Alimentos y conservas",
-  "Bebidas artesanales",
-  "Textiles y artesanías",
-  "Mariscos y pesca",
-  "Dulces y repostería",
-  "Madera y tallados",
-  "Cosmética natural",
-  "Otros",
-];
+
 
 const ESTADO_INICIAL = {
   nombre: "",
@@ -32,6 +23,7 @@ export default function ProductoModal({
   productoEditar = null,
   onGuardar,
   onCancelar,
+  categorias = [],
 }) {
   const [form, setForm] = useState(ESTADO_INICIAL);
   const [errores, setErrores] = useState(ERRORES_INICIAL);
@@ -186,10 +178,10 @@ export default function ProductoModal({
               placeholder="Ingrese el nombre del producto.."
               value={form.nombre}
               onChange={(e) => handleChange("nombre", e.target.value)}
-              className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-texto
+              className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-texto 
                 bg-blanco text-azul-oscuro placeholder:text-gray-400
-                border transition-colors
-                focus:border-celeste focus:ring-2 focus:ring-celeste/30
+                border transition-colors 
+                focus:border-celeste focus:ring-2 focus:ring-celeste/30  focus:animate-pulse
                 ${errores.nombre ? "border-warning" : "border-blanco/0"} border-4` }
               aria-invalid={!!errores.nombre}
               aria-describedby={errores.nombre ? "error-nombre" : undefined}
@@ -223,7 +215,7 @@ export default function ProductoModal({
               className="w-full px-3 py-2 rounded-lg text-sm outline-none font-texto
                 bg-blanco text-azul-oscuro placeholder:text-gray-400
                 border border-transparent resize-none
-                focus:border-celeste focus:ring-2 focus:ring-celeste/30 transition-colors"
+                focus:border-celeste focus:ring-2 focus:ring-celeste/30 transition-colors border-4 focus:animate-pulse"
             />
           </div>
 
@@ -240,19 +232,19 @@ export default function ProductoModal({
               value={form.categoria}
               onChange={(e) => handleChange("categoria", e.target.value)}
               className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-texto
-                bg-blanco border transition-colors cursor-pointer
-                focus:border-celeste focus:ring-2 focus:ring-celeste/30
-                ${form.categoria ? "text-azul-oscuro" : "text-gray-400"}
-                ${errores.categoria ? "border-warning" : "border-blanco/0"} border-4"`}
-              aria-invalid={!!errores.categoria}
-              aria-describedby={
+                bg-blanco border transition-colors cursor-pointer 
+                focus:border-celeste focus:ring-2 focus:ring-celeste/30 border-4 focus:animate-pulse   
+                ${form.categoria ? "text-azul-oscuro " : "text-gray-400 " }
+                ${errores.categoria ? "border-warning" : "border-blanco/0"} border-4 "`}
+                aria-invalid={!!errores.categoria}
+                aria-describedby={
                 errores.categoria ? "error-categoria" : undefined
               }
             >
               <option value="">-- Sin Categoria Seleccionada --</option>
-              {CATEGORIAS.map((cat) => (
-                <option key={cat} value={cat} className="text-azul-oscuro">
-                  {cat}
+              {categorias.map((cat) => (
+                <option key={cat.id} value={cat.nombre} className="text-azul-oscuro">
+                  {cat.nombre}
                 </option>
               ))}
             </select>
@@ -265,7 +257,7 @@ export default function ProductoModal({
             </p>
           </div>
 
-          {/* Precio + Stock */}
+          {/*precio + stock */}
           <div className="grid grid-cols-2 gap-4 mb-1">
             <div>
               <label
@@ -285,7 +277,7 @@ export default function ProductoModal({
                 className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-numeros
                   bg-blanco text-azul-oscuro placeholder:text-gray-400
                   border transition-colors
-                  focus:border-celeste focus:ring-2 focus:ring-celeste/30
+                  focus:border-celeste focus:ring-2 focus:ring-celeste/30 focus:animate-pulse
                   ${errores.precio
                     ? nuevosTipos.precio === "negativo"
                       ? "border-rojo"
@@ -322,7 +314,7 @@ export default function ProductoModal({
                 className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-numeros
                   bg-blanco text-azul-oscuro placeholder:text-gray-400
                   border transition-colors
-                  focus:border-celeste focus:ring-2 focus:ring-celeste/30
+                  focus:border-celeste focus:ring-2 focus:ring-celeste/30 focus:animate-pulse
                   ${errores.stock
                     ? nuevosTipos.stock === "negativo"
                       ? "border-rojo"
