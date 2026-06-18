@@ -17,6 +17,28 @@ const ERRORES_INICIAL = {
   precio: "",
   stock: "",
 };
+interface Categoria {
+  id: number;
+  nombre: string;
+}
+
+interface Producto {
+  id?: number;
+  nombre: string;
+  descripcion: string;
+  categoria: string;
+  precio: number;
+  stock: number;
+  estado: string;
+}
+
+interface ProductoModalProps {
+  abierto?: boolean;
+  productoEditar?: Producto | null;
+  onGuardar?: (producto: Producto) => void;
+  onCancelar?: () => void;
+  categorias?: Categoria[];
+}
 
 export default function ProductoModal({
   abierto = true,
@@ -24,11 +46,12 @@ export default function ProductoModal({
   onGuardar,
   onCancelar,
   categorias = [],
-}) {
+}:ProductoModalProps) {
   const [form, setForm] = useState(ESTADO_INICIAL);
   const [errores, setErrores] = useState(ERRORES_INICIAL);
   const [guardado, setGuardado] = useState(false);
   const [nuevosTipos, setNuevosTipos] = useState({ precio: "", stock: "" });
+  const [guardadoExito, setGuardadoExito] = useState(false);
 
   useEffect(() => {
     if (productoEditar) {
@@ -48,12 +71,14 @@ export default function ProductoModal({
     }
     setErrores(ERRORES_INICIAL);
     setGuardado(false);
+    setGuardadoExito(false);
   }, [productoEditar, abierto]);
 
   if (!abierto) return null;
 
   function validar() {
     const nuevosErrores = { nombre: "", categoria: "", precio: "", stock: "" };
+    const tipos = { precio: "", stock: "" };
     let valido = true;
 
     if (!form.nombre.trim()) {
@@ -71,28 +96,33 @@ export default function ProductoModal({
 
     if (!form.precio) {
       nuevosErrores.precio = "El precio es obligatorio.";
-      // valido = false;
-      nuevosTipos.precio = "vacio";      // amarillo
+      tipos.precio = "vacio"
+      valido = false;      // amarillo
     } else if (Number(form.precio) <= 0) {
       nuevosErrores.precio = "El precio debe ser un numero positivo.";
       nuevosTipos.precio = "negativo";   //  rojo
+      valido = false;
     }
 
     if (form.stock === "") {
       nuevosErrores.stock = "El stock es obligatorio.";
-      nuevosTipos.stock = "vacio";
+      tipos.stock = "vacio";
+      valido = false;
     } else if (Number(form.stock) < 0) {
       nuevosErrores.stock = "El stock debe ser un número positivo.";
-      nuevosTipos.stock = "negativo";
+      tipos.stock = "negativo";
+      valido = false;
+
     }
 
     setErrores(nuevosErrores);
+    setNuevosTipos(tipos);
     return valido;
   }
 
-  function handleChange(campo, valor) {
+  function handleChange(campo: string, valor: string) {
     setForm((prev) => ({ ...prev, [campo]: valor }));
-    if (errores[campo]) {
+    if (errores[campo as keyof typeof errores]) {
       setErrores((prev) => ({ ...prev, [campo]: "" }));
     }
   }
@@ -108,17 +138,18 @@ export default function ProductoModal({
       id: productoEditar?.id || Date.now(),
     };
 
-    setGuardado(true);
+    setGuardadoExito(true);
     setTimeout(() => {
-      setGuardado(false);
+      setGuardadoExito(false);
       onGuardar?.(producto);
-    }, 1500);
+    }, 2500);  // se cierra solo después de 2.5 segundos
   }
 
   function handleCancelar() {
     setForm(ESTADO_INICIAL);
     setErrores(ERRORES_INICIAL);
     setGuardado(false);
+    setGuardadoExito(false);
     onCancelar?.();
   }
 
@@ -141,29 +172,28 @@ export default function ProductoModal({
       >
         {/* ── HEADER: azul-oscuro ── */}
         <div className="bg-azul-oscuro px-8 py-2">
-          <h2
-            id="modal-titulo"
-            className="font-titulo text-blanco text-[28px] font-normal text-center tracking-widest"
-          >
+          <h2 id="modal-titulo" className="font-titulo text-blanco text-[28px] font-normal text-center tracking-widest">
             {titulo}
           </h2>
         </div>
-
+        
+        {guardadoExito ? (
+          /* ── PANTALLA DE ÉXITO ── */
+          <div className="bg-azul flex flex-col items-center justify-center rounded-b-2xl"
+            style={{ height: "570px" }}>
+            <img
+              src="./public/photos/exito.png"   /* ← la ruta donde tengas el SVG en tu proyecto */
+              alt="Producto guardado con éxito"
+              className="w-44 h-44"
+            />
+            <p className="font-titulo text-blanco text-2xl font-normal mt-6 tracking-wide">
+              {esEdicion ? "¡Producto actualizado!" : "¡Producto cargado!"}
+            </p>
+          </div>
+        ) : (
+          <>
         {/* ── CUERPO: azul ── */}
         <div className="bg-azul px-8 py-6 overflow-y-auto">
-          {/* Toast éxito */}
-          {guardado && (
-            <div
-              className="flex items-center justify-center gap-2 mb-4 px-4 py-3 rounded-lg border border-celeste bg-celeste/20 text-celeste text-sm"
-              role="status"
-            >
-              <span>✓</span>
-              <span>
-                Producto {esEdicion ? "actualizado" : "guardado"} con éxito
-              </span>
-            </div>
-          )}
-
           {/* Nombre */}
           <div className="mb-1">
             <label
@@ -235,7 +265,7 @@ export default function ProductoModal({
                 bg-blanco border transition-colors cursor-pointer 
                 focus:border-celeste focus:ring-2 focus:ring-celeste/30 border-4 focus:animate-pulse   
                 ${form.categoria ? "text-azul-oscuro " : "text-gray-400 " }
-                ${errores.categoria ? "border-warning" : "border-blanco/0"} border-4 "`}
+                ${errores.categoria ? "border-warning" : "border-blanco/0"} border-4`}
                 aria-invalid={!!errores.categoria}
                 aria-describedby={
                 errores.categoria ? "error-categoria" : undefined
@@ -282,8 +312,8 @@ export default function ProductoModal({
                     ? nuevosTipos.precio === "negativo"
                       ? "border-rojo"
                       : "border-warning"
-                    : "border-blanco/0"} 
-                    border-4`}
+                      : "border-blanco/0"} 
+                        border-4`}
                 aria-invalid={!!errores.precio}
                 aria-describedby={errores.precio ? "error-precio" : undefined}
               />
@@ -319,8 +349,7 @@ export default function ProductoModal({
                     ? nuevosTipos.stock === "negativo"
                       ? "border-rojo"
                       : "border-warning"
-                    : "border-blanco/0"} 
-                  } 
+                    : "border-blanco/0"}
                   border-4`}
                 aria-invalid={!!errores.stock}
                 aria-describedby={errores.stock ? "error-stock" : undefined}
@@ -334,7 +363,6 @@ export default function ProductoModal({
               </p>
             </div>
           </div>
-
           {/* Toggle Estado */}
           <div className="mb-2">
             <p className="text-sin-presionar text-sm font-medium text-center mb-3">
@@ -391,9 +419,12 @@ export default function ProductoModal({
             border-2 border-verde text-verde bg-transparent
             hover:bg-verde hover:text-blanco disabled:opacity-60 transition-colors"
           >
-            {guardado ? "Guardando..." : "Guardar"}
-          </button>
-        </div>
+                Guardar
+              </button>
+            </div>
+          </>
+        )}
+
       </div>
     </div>
   );
