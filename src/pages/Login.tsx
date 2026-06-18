@@ -147,7 +147,7 @@ export default function Login() {
               }
             />
           </div>
-          <div className="min-h-6">
+          <div className="min-h-8">
             {errors.email && (
               <p className="text-naranja font-texto  text-center">
                 {errors.email}
@@ -209,7 +209,7 @@ export default function Login() {
               </svg>
             </button>
           </div>
-          <div className="min-h-6">
+          <div className="min-h-8">
             {errors.credentials && (
               <p className="text-naranja font-texto  text-center">
                 {errors.credentials}
@@ -233,7 +233,7 @@ export default function Login() {
           </div>
           <button
             type="submit"
-            className="bg-celeste text-2xl text-blanco font-texto font-bold mt-7 py-6 px-15 rounded hover:bg-hover-btn transition-all duration-300 cursor-pointer"
+            className="bg-celeste text-2xl text-blanco font-texto font-bold mt-7 py-6 px-15 rounded hover:bg-hover-btn transition-all duration-300 cursor-pointer hover:scale-110"
           >
             Acceder
           </button>

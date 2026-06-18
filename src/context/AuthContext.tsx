@@ -9,11 +9,13 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+
   const [user, setUser] = useState(() => {
     const savedUser = sessionStorage.getItem("user");
 
     return savedUser ? JSON.parse(savedUser) : null;
   });
+  
   const login = (usuario: Usuario) => {
     sessionStorage.setItem("user", JSON.stringify(usuario));
     setUser(usuario);
