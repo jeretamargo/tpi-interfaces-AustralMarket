@@ -5,10 +5,16 @@ import GestionProductos from "../components/tabla/Gestion";
 
 export default function ListaProdcutos() {
   return (
-    <div>
-      <Header />
-      <GestionProductos />
-      <Footer />
-    </div>
+    <>
+      <header>
+        <Header />
+      </header>
+      <main>
+        <GestionProductos />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
+    </>
   );
 }
