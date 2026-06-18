@@ -5,14 +5,9 @@ import Tabs from "./Tabs";
 import { useState } from "react";
 import ProductoModal from "../ProductoModal"
 
-const productos = [
-	{
-		id: 1,
-		nombre: "Producto 1",
-		categoria: "Electrónica",
-		precio: 299.99,
-		stock: 50,
-		estado: "Disponible",
+
+const productosIniciales = [
+	{id: 1,nombre: "Producto 1",descripcion:"lalalla",categoria: "Electrónica",precio: 299.99,stock: 50,estado: "Disponible",
 	},
 	{
 		id: 2,
@@ -84,6 +79,8 @@ const categorias = [
 
 export default function GestionProductos() {
 	const [activeTab, setActiveTab] = useState("productos");
+	const [productos, setProductos] = useState(productosIniciales); // pa que cambie
+
 	// estado del modal 
 	const [modalAbierto, setModalAbierto] = useState(false);
 	const [productoSeleccionado, setProductoSeleccionado] = useState(null);
@@ -101,16 +98,25 @@ export default function GestionProductos() {
 		setModalAbierto(false);
 		setProductoSeleccionado(null);
 	};
+	const handleGuardar = (producto) => {
+    if (productoSeleccionado) {
+      // EDITAR
+		setProductos((prev) =>
+			prev.map((p) => (p.id === producto.id ? producto : p))
+		);
+		} else {
+		//NUEVO
+		setProductos((prev) => [...prev, producto]);
+		}
+		//cerrarModal();
+	};
 
 	return (
 		<div className="p-6 min-h-screen font-texto bg-azul-oscuro text-blanco">
 			<ProductoModal
 				abierto={modalAbierto}
 				productoEditar={productoSeleccionado}
-				onGuardar={(producto) => {
-				console.log("Guardar:", producto);
-				cerrarModal();
-				}}
+				onGuardar={handleGuardar}
 				onCancelar={cerrarModal}
 				categorias={categorias} //paso la categoria
 

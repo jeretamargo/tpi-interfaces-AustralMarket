@@ -142,7 +142,8 @@ export default function ProductoModal({
     setTimeout(() => {
       setGuardadoExito(false);
       onGuardar?.(producto);
-    }, 2500);  // se cierra solo después de 2.5 segundos
+      onCancelar?.();
+    }, 1500);  // se cierra solo después de 2.5 segundos
   }
 
   function handleCancelar() {

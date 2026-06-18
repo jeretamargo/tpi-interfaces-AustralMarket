@@ -1,6 +1,6 @@
 import HeaderCell from "./HeadTabla";
 import TablaItem from "./TablaItem";
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 
 export default function Tabla({ productos,onEditar  }) {
 	const [sortedData, setSortedData] = useState(productos);
@@ -17,6 +17,10 @@ export default function Tabla({ productos,onEditar  }) {
 		});
 		setSortedData(sorted);
 	};
+	//para actualizar cuando sea agrege/edite algo
+	useEffect(() => {
+    setSortedData(productos);
+	}, [productos]);
 
 	return (
 		<div className="overflow-x-auto">
