@@ -132,13 +132,19 @@ export default function Login() {
               id="email"
               type="text"
               placeholder="usuario@australmarket.com"
-              className={`bg-blanco text-black placeholder:text-gray-500 rounded-lg border-gray-300 focus:outline-none focus:ring-4 focus:ring-celeste w-75 h-8 px-3  ${errors.email ? "ring-rojo ring-4" : ""} ${errors.credentials ? "ring-rojo ring-4" : ""} ${warnings.email ? "ring-warning ring-4" : ""}  `}
+              className={`bg-blanco text-black placeholder:text-gray-500 rounded-lg border-gray-300 focus:outline-none focus:ring-4 w-80 h-10 px-3  ${errors.email && touched.email ? "ring-rojo ring-4 focus:ring-rojo" : ""} ${errors.credentials ? "ring-rojo focus:ring-rojo ring-4  " : ""} ${warnings.email && touched.email ? "ring-warning focus:ring-warning ring-4 " : "focus:ring-celeste"}  `}
               value={email}
               onChange={(e) => {
                 const value = e.target.value;
                 setEmail(value);
                 validateEmail(value);
               }}
+              onFocus={() =>
+                setTouched((prev) => ({
+                  ...prev,
+                  email: false,
+                }))
+              }
               onBlur={() =>
                 setTouched((prev) => ({
                   ...prev,
@@ -148,7 +154,7 @@ export default function Login() {
             />
           </div>
           <div className="min-h-8">
-            {errors.email && (
+            {errors.email && touched.email && (
               <p className="text-naranja font-texto  text-center">
                 {errors.email}
               </p>
@@ -170,19 +176,17 @@ export default function Login() {
               id="password"
               type={isShowingPassword ? "text" : "password"}
               placeholder="Introduzca su contraseña"
-              className={`bg-blanco text-black placeholder:text-gray-500 rounded-lg border-gray-300 focus:outline-none focus:ring-4 focus:ring-celeste w-75 h-8 px-3 ${errors.credentials ? "ring-rojo ring-4" : ""}  ${warnings.password ? "ring-warning ring-4" : ""} `}
+              className={`bg-blanco text-black placeholder:text-gray-500 rounded-lg border-gray-300 focus:outline-none focus:ring-4  w-80 h-10 px-3 ${errors.credentials ? "ring-rojo ring-4 focus:ring-rojo" : ""}  ${warnings.password ? "ring-warning ring-4  focus:ring-warning " : "focus:ring-celeste"} `}
               value={password}
               onChange={(e) => {
                 const value = e.target.value;
                 setPassword(value);
                 validatePassword(value);
-              }}
-              onBlur={() =>
                 setTouched((prev) => ({
                   ...prev,
                   password: true,
-                }))
-              }
+                }));
+              }}
             />
             <button
               type="button"
@@ -194,7 +198,7 @@ export default function Login() {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className="absolute size-8 right-2 top-1/2 -translate-y-1  text-gray-500 hover:text-black transition-all  cursor-pointer "
+                className="absolute size-8 right-2 top-1/2  -translate-y-1.1  text-gray-500 hover:text-black transition-all  cursor-pointer "
               >
                 <path
                   stroke-linecap="round"
