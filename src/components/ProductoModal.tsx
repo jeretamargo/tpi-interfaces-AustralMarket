@@ -100,7 +100,7 @@ export default function ProductoModal({
       valido = false;      // amarillo
     } else if (Number(form.precio) <= 0) {
       nuevosErrores.precio = "El precio debe ser un numero positivo.";
-      nuevosTipos.precio = "negativo";   //  rojo
+      tipos.precio = "negativo";
       valido = false;
     }
 
@@ -211,7 +211,7 @@ export default function ProductoModal({
               className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-texto 
                 bg-blanco text-azul-oscuro placeholder:text-gray-400
                 border transition-colors 
-                focus:border-celeste focus:ring-2 focus:ring-celeste/30  focus:animate-pulse
+                focus:border-celeste focus:ring-2 focus:ring-celeste/30  
                 ${errores.nombre ? "border-warning" : "border-blanco/0"} border-4` }
               aria-invalid={!!errores.nombre}
               aria-describedby={errores.nombre ? "error-nombre" : undefined}
@@ -349,8 +349,8 @@ export default function ProductoModal({
                     ? nuevosTipos.stock === "negativo"
                       ? "border-rojo"
                       : "border-warning"
-                    : "border-blanco/0"}
-                  border-4`}
+                      : "border-blanco/0"}
+                        border-4`}
                 aria-invalid={!!errores.stock}
                 aria-describedby={errores.stock ? "error-stock" : undefined}
               />
