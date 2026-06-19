@@ -3,15 +3,11 @@ import Tabla from "./Tabla";
 import Paginacion from "./Paginacion";
 import Tabs from "./Tabs";
 import { useState } from "react";
+import ProductoModal from "../ProductoModal"
 
-const productos = [
-	{
-		id: 1,
-		nombre: "Producto 1",
-		categoria: "Electrónica",
-		precio: 299.99,
-		stock: 50,
-		estado: "Disponible",
+
+const productosIniciales = [
+	{id: 1,nombre: "Producto 1",descripcion:"lalalla",categoria: "Electrónica",precio: 299.99,stock: 50,estado: "Disponible",
 	},
 	{
 		id: 2,
@@ -83,15 +79,55 @@ const categorias = [
 
 export default function GestionProductos() {
 	const [activeTab, setActiveTab] = useState("productos");
+	const [productos, setProductos] = useState(productosIniciales); // pa que cambie
+
+	// estado del modal 
+	const [modalAbierto, setModalAbierto] = useState(false);
+	const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+	const abrirNuevo = () => {
+    setProductoSeleccionado(null);   // sin datos = modo NUEVO
+    setModalAbierto(true);
+	};
+
+	const abrirEditar = (producto) => {
+		setProductoSeleccionado(producto); // con datos = modo EDITAR
+		setModalAbierto(true);
+	};
+
+	const cerrarModal = () => {
+		setModalAbierto(false);
+		setProductoSeleccionado(null);
+	};
+	const handleGuardar = (producto) => {
+    if (productoSeleccionado) {
+      // EDITAR
+		setProductos((prev) =>
+			prev.map((p) => (p.id === producto.id ? producto : p))
+		);
+		} else {
+		//NUEVO
+		setProductos((prev) => [...prev, producto]);
+		}
+		//cerrarModal();
+	};
+
 	return (
 		<div className="p-6 min-h-screen font-texto bg-azul-oscuro text-blanco">
-			<Head />
+			<ProductoModal
+				abierto={modalAbierto}
+				productoEditar={productoSeleccionado}
+				onGuardar={handleGuardar}
+				onCancelar={cerrarModal}
+				categorias={categorias} //paso la categoria
+
+			/>
+			<Head onAgregarProducto={abrirNuevo}/>
 			<Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
 			{activeTab === "productos" ? (
 				productos.length > 0 ? (
 					<>
-						<Tabla productos={productos} />
+						<Tabla productos={productos} onEditar={abrirEditar} />
 						<Paginacion />
 					</>
 				) : (
@@ -99,7 +135,7 @@ export default function GestionProductos() {
 						<p className="text-sin-presionar text-lg mb-4">
 							No hay productos cargados en el sistema
 						</p>
-						<button className="bg-naranja hover:bg-hover-btn text-blanco px-4 py-2 rounded">
+						<button onClick={abrirNuevo} className="bg-naranja hover:bg-hover-btn text-blanco px-4 py-2 rounded">
 							+ Agregar Producto
 						</button>
 					</div>

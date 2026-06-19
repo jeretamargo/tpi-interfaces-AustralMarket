@@ -1,8 +1,8 @@
 import HeaderCell from "./HeadTabla";
 import TablaItem from "./TablaItem";
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 
-export default function Tabla({ productos }) {
+export default function Tabla({ productos,onEditar  }) {
 	const [sortedData, setSortedData] = useState(productos);
 
 	const handleSort = (key, direction) => {
@@ -17,6 +17,10 @@ export default function Tabla({ productos }) {
 		});
 		setSortedData(sorted);
 	};
+	//para actualizar cuando sea agrege/edite algo
+	useEffect(() => {
+    setSortedData(productos);
+	}, [productos]);
 
 	return (
 		<div className="w-full ">
@@ -52,7 +56,11 @@ export default function Tabla({ productos }) {
 				</thead>
 				<tbody>
 					{sortedData.map((p) => (
-						<TablaItem key={p.id} producto={p} />
+						<TablaItem 
+						key={p.id} 
+						producto={p} 
+						onEditar={onEditar}
+						/>
 					))}
 				</tbody>
 			</table>
