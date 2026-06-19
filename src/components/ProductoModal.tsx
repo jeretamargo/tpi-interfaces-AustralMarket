@@ -52,6 +52,7 @@ export default function ProductoModal({
   const [guardado, setGuardado] = useState(false);
   const [nuevosTipos, setNuevosTipos] = useState({ precio: "", stock: "" });
   const [guardadoExito, setGuardadoExito] = useState(false);
+  const [selectAbierto, setSelectAbierto] = useState(false);
 
   useEffect(() => {
     if (productoEditar) {
@@ -73,6 +74,19 @@ export default function ProductoModal({
     setGuardado(false);
     setGuardadoExito(false);
   }, [productoEditar, abierto]);
+
+    useEffect(() => {
+      if (abierto) {
+        document.body.style.overflow = "hidden"; // ← bloquea scroll del fondo
+      } else {
+        document.body.style.overflow = ""; // ← lo restaura al cerrar
+      }
+
+      // limpieza por si el componente se desmonta con el modal abierto
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }, [abierto]);
 
   if (!abierto) return null;
 
@@ -152,6 +166,7 @@ export default function ProductoModal({
     setGuardado(false);
     setGuardadoExito(false);
     onCancelar?.();
+    setSelectAbierto(false);
   }
 
   const esEdicion = Boolean(productoEditar);
@@ -193,7 +208,7 @@ export default function ProductoModal({
         ) : (
           <>
         {/* CUERPO: azul*/}
-        <div className="bg-azul px-8 py-6 overflow-y-auto">
+        <div className="bg-azul px-8 py-6 overflow-visible">
           {/* Nombre */}
           <div className="mb-1">
             <label
@@ -260,47 +275,60 @@ export default function ProductoModal({
             />
           </div>
 
-          {/* Categoría */}
-          <div className="mb-1">
-            <label
-              htmlFor="categoria"
-              className="block text-sin-presionar text-sm mb-1 font-medium"
-            >
-              Categoria <span className="text-rojo">*</span>
-            </label>
-            <select
-              id="categoria"
-              value={form.categoria}
-              onChange={(e) => handleChange("categoria", e.target.value)}
-              className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-texto
-              bg-blanco border cursor-pointer border-4
-              transition-all duration-200
-              focus:border-celeste
-              focus:ring-2
-              focus:ring-celeste/30
-              focus:scale-[1.01]   
-                ${form.categoria ? "text-azul-oscuro " : "text-gray-400 " }
-                ${errores.categoria ? "border-warning" : "border-blanco/0"} border-4`}
-                aria-invalid={!!errores.categoria}
-                aria-describedby={
-                errores.categoria ? "error-categoria" : undefined
-              }
-            >
-              <option value="">-- Sin Categoria Seleccionada --</option>
-              {categorias.map((cat) => (
-                <option key={cat.id} value={cat.nombre} className="text-azul-oscuro">
-                  {cat.nombre}
-                </option>
-              ))}
-            </select>
-            <p
-              id="error-categoria"
-              className="text-naranja text-xs flex items-center gap-1 min-h-[1.25rem] mt-0.5"
-              role="alert"
-            >
-              {errores.categoria ? `⚠ ${errores.categoria}` : ""}
-            </p>
+         {/* Categoría */}
+<div className="mb-1">
+  <label htmlFor="categoria" className="block text-sin-presionar text-sm mb-1 font-medium">
+    Categoria <span className="text-rojo">*</span>
+  </label>
+
+  <div className="relative">
+    {/* Botón que muestra la opción seleccionada */}
+    <button
+      type="button"
+      onClick={() => setSelectAbierto((prev) => !prev)}
+      className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-texto
+        bg-blanco border border-4 cursor-pointer text-left
+        transition-all duration-200
+        focus:border-celeste focus:ring-2 focus:ring-celeste/30 focus:scale-[1.01]
+        ${form.categoria ? "text-azul-oscuro" : "text-gray-400"}
+        ${errores.categoria ? "border-warning" : "border-blanco/0"}`}
+    >
+      {form.categoria || "-- Sin Categoria Seleccionada --"}
+      {/* Flecha */}
+      <span className={`absolute right-3 top-1/2 -translate-y-1/2 transition-transform duration-200
+        ${selectAbierto ? "rotate-180" : ""}`}>
+        ▼
+      </span>
+    </button>
+
+    {/* Dropdown de opciones */}
+    {selectAbierto && (
+      <div className="absolute z-10 w-full mt-1 bg-blanco border-4 border-celeste rounded-lg shadow-lg overflow-y-auto max-h-50">
+        <div
+          onClick={() => { handleChange("categoria", ""); setSelectAbierto(false); }}
+          className="px-3 py-2 text-sm text-gray-400 cursor-pointer hover:bg-celeste/10"
+        >
+          -- Sin Categoria Seleccionada --
+        </div>
+        {categorias.map((cat) => (
+          <div
+            key={cat.id}
+            onClick={() => { handleChange("categoria", cat.nombre); setSelectAbierto(false); }}
+            className={`px-3 py-2 text-sm cursor-pointer transition-colors
+              hover:bg-celeste hover:text-blanco
+              ${form.categoria === cat.nombre ? "bg-celeste/20 text-azul-oscuro font-semibold" : "text-azul-oscuro"}`}
+          >
+            {cat.nombre}
           </div>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <p id="error-categoria" className="text-naranja text-xs flex items-center gap-1 min-h-[1.25rem] mt-0.5" role="alert">
+    {errores.categoria ? `⚠ ${errores.categoria}` : ""}
+  </p>
+</div>
 
           {/*precio + stock */}
           <div className="grid grid-cols-2 gap-4 mb-1">
