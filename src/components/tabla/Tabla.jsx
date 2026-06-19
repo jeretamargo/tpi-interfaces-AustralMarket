@@ -2,7 +2,7 @@ import HeaderCell from "./HeadTabla";
 import TablaItem from "./TablaItem";
 import { useState, useEffect  } from "react";
 
-export default function Tabla({ productos,onEditar  }) {
+export default function Tabla({ productos,onEditar ,onEliminar  }) {
 	const [sortedData, setSortedData] = useState(productos);
 
 	const handleSort = (key, direction) => {
@@ -60,6 +60,7 @@ export default function Tabla({ productos,onEditar  }) {
 						key={p.id} 
 						producto={p} 
 						onEditar={onEditar}
+						onEliminar={onEliminar}
 						/>
 					))}
 				</tbody>
