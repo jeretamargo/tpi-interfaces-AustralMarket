@@ -418,8 +418,10 @@ export default function ProductoModal({
     Estado
   </p>
   <div className="flex items-center justify-center gap-4">
-    <span className={`text-xs font-titulo font-bold tracking-wider transition-colors
-      ${form.estado === "desactivado" ? "text-rojo" : "text-rojo/60"}`}>
+    <span className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300
+      ${form.estado === "desactivado" 
+        ? "text-rojo scale-110" 
+        : "text-rojo/80"}`}>
       DESACTIVADO
     </span>
 
@@ -433,12 +435,16 @@ export default function ProductoModal({
     >
       {/* Bolita */}
       <span className={`absolute top-1 w-6 h-6 rounded-full transition-all duration-300
-        ${form.estado === "disponible" ? "left-11 bg-verde" : "left-1 bg-rojo"}`}
+        ${form.estado === "disponible" 
+          ? "left-11 bg-verde shadow-[0_0_10px_rgba(6,172,23,0.9)]" 
+          : "left-1 bg-rojo shadow-[0_0_10px_rgba(172,6,6,0.9)]"}`}
       />
     </button>
 
-    <span className={`text-xs font-titulo font-bold tracking-wider transition-colors
-      ${form.estado === "disponible" ? "text-verde" : "text-verde/60"}`}>
+    <span className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300
+      ${form.estado === "disponible" 
+        ? "text-verde scale-110" 
+        : "text-verde/80"}`}>
       DISPONIBLE
     </span>
   </div>
