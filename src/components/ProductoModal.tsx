@@ -413,50 +413,47 @@ export default function ProductoModal({
             </div>
           </div>
           {/* Toggle Estado */}
-          <div className="mb-2">
-            <p className="text-sin-presionar text-sm font-medium text-center mb-3">
-              Estado
-            </p>
-            <div className="flex flex-col md:flex-row gap-3 justify-center items-center">
-              <button
-                type="button"
-                onClick={() => handleChange("estado", "desactivado")}
-                aria-pressed={form.estado === "desactivado"}
-                className={`w-full md:flex-1 md:max-w-[190px] py-3 px-6 rounded-full font-titulo font-bold text-xs tracking-wider  transition-all
-                  ${
-                    form.estado === "desactivado"
-                      ? "bg-rojo text-blanco"
-                      : "bg-azul-oscuro text-sin-presionar/50 opacity-60"
-                  }`}
-              >
-                DESACTIVADO
-              </button>
-              <button
-                type="button"
-                onClick={() => handleChange("estado", "disponible")}
-                aria-pressed={form.estado === "disponible"}
-                className={`w-full md:flex-1 md:max-w-[190px] py-3 px-6 rounded-full font-titulo font-bold text-xs tracking-wider  transition-all
-                  ${
-                    form.estado === "disponible"
-                      ? "bg-verde text-blanco"
-                      : "bg-azul-oscuro text-sin-presionar/50 opacity-60"
-                  }`}
-              >
-                DISPONIBLE
-              </button>
-            </div>
-          </div>
+<div className="mb-2">
+  <p className="text-sin-presionar text-sm font-medium text-center mb-3">
+    Estado
+  </p>
+  <div className="flex items-center justify-center gap-4">
+    <span className={`text-xs font-titulo font-bold tracking-wider transition-colors
+      ${form.estado === "desactivado" ? "text-rojo" : "text-rojo/60"}`}>
+      DESACTIVADO
+    </span>
+
+    {/* Switch */}
+    <button
+      type="button"
+      onClick={() => handleChange("estado", form.estado === "disponible" ? "desactivado" : "disponible")}
+      className={`relative w-20 h-9 rounded-full border-2 transition-all duration-300
+        ${form.estado === "disponible" ? "bg-verde/20 border-verde" : "bg-rojo/20 border-rojo"}`}
+      aria-pressed={form.estado === "disponible"}
+    >
+      {/* Bolita */}
+      <span className={`absolute top-1 w-6 h-6 rounded-full transition-all duration-300
+        ${form.estado === "disponible" ? "left-11 bg-verde" : "left-1 bg-rojo"}`}
+      />
+    </button>
+
+    <span className={`text-xs font-titulo font-bold tracking-wider transition-colors
+      ${form.estado === "disponible" ? "text-verde" : "text-verde/60"}`}>
+      DISPONIBLE
+    </span>
+  </div>
+</div>
       
         </div>
         {/* fin cuerpo azul */}
         {/* ── FOOTER: azul-oscuro ── */}
-        <div className="bg-azul-oscuro px-8 py-4 flex gap-3 rounded-b-2xl ">
+        <div className="bg-azul-oscuro px-8 py-4 flex gap-3 rounded-b-2xl">
           <button
             type="button"
             onClick={handleCancelar}
             className="flex-1 py-2 rounded-lg text-sm font-semibold font-texto
-              border-2 border-rojo text-rojo bg-transparent
-              hover:bg-rojo hover:text-blanco transition-colors"
+              border-2 border-rojo bg-rojo text-blanco
+              hover:bg-transparent hover:text-rojo transition-colors"
           >
             Cancelar
           </button>
@@ -465,12 +462,12 @@ export default function ProductoModal({
             onClick={handleGuardar}
             disabled={guardado}
             className="flex-1 py-2 rounded-lg text-sm font-semibold font-texto
-            border-2 border-verde text-verde bg-transparent
-            hover:bg-verde hover:text-blanco disabled:opacity-60 transition-colors"
+              border-2 border-verde bg-verde text-blanco
+              hover:bg-transparent hover:text-verde disabled:opacity-60 transition-colors"
           >
-                Guardar
-              </button>
-            </div>
+            Guardar
+          </button>
+        </div>
           </>
         )}
 
