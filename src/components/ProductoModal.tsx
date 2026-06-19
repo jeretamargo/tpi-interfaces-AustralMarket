@@ -211,7 +211,13 @@ export default function ProductoModal({
               className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-texto 
                 bg-blanco text-azul-oscuro placeholder:text-gray-400
                 border transition-colors 
-                focus:border-celeste focus:ring-2 focus:ring-celeste/30  
+                focus:border-celeste 
+                focus:ring-2
+                focus:ring-celeste/30
+                focus:scale-[1.01]
+                transition-all
+                duration-200
+
                 ${errores.nombre ? "border-warning" : "border-blanco/0"} border-4` }
               aria-invalid={!!errores.nombre}
               aria-describedby={errores.nombre ? "error-nombre" : undefined}
@@ -243,9 +249,14 @@ export default function ProductoModal({
               onChange={(e) => handleChange("descripcion", e.target.value)}
               rows={3}
               className="w-full px-3 py-2 rounded-lg text-sm outline-none font-texto
-                bg-blanco text-azul-oscuro placeholder:text-gray-400
-                border border-transparent resize-none
-                focus:border-celeste focus:ring-2 focus:ring-celeste/30 transition-colors border-4 focus:animate-pulse"
+              bg-blanco text-azul-oscuro placeholder:text-gray-400
+              border border-transparent resize-none border-4
+              focus:border-celeste
+              focus:ring-2
+              focus:ring-celeste/30
+              focus:scale-[1.01]
+              transition-all
+              duration-200"
             />
           </div>
 
@@ -262,8 +273,12 @@ export default function ProductoModal({
               value={form.categoria}
               onChange={(e) => handleChange("categoria", e.target.value)}
               className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-texto
-                bg-blanco border transition-colors cursor-pointer 
-                focus:border-celeste focus:ring-2 focus:ring-celeste/30 border-4 focus:animate-pulse   
+              bg-blanco border cursor-pointer border-4
+              transition-all duration-200
+              focus:border-celeste
+              focus:ring-2
+              focus:ring-celeste/30
+              focus:scale-[1.01]   
                 ${form.categoria ? "text-azul-oscuro " : "text-gray-400 " }
                 ${errores.categoria ? "border-warning" : "border-blanco/0"} border-4`}
                 aria-invalid={!!errores.categoria}
@@ -306,8 +321,11 @@ export default function ProductoModal({
                 onChange={(e) => handleChange("precio", e.target.value)}
                 className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-numeros
                   bg-blanco text-azul-oscuro placeholder:text-gray-400
-                  border transition-colors
-                  focus:border-celeste focus:ring-2 focus:ring-celeste/30 focus:animate-pulse
+                  border border-4 transition-all duration-200
+                  focus:border-celeste
+                  focus:ring-2
+                  focus:ring-celeste/30
+                  focus:scale-[1.01]
                   ${errores.precio
                     ? nuevosTipos.precio === "negativo"
                       ? "border-rojo"
@@ -342,9 +360,12 @@ export default function ProductoModal({
                 value={form.stock}
                 onChange={(e) => handleChange("stock", e.target.value)}
                 className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-numeros
-                  bg-blanco text-azul-oscuro placeholder:text-gray-400
-                  border transition-colors
-                  focus:border-celeste focus:ring-2 focus:ring-celeste/30 focus:animate-pulse
+                bg-blanco text-azul-oscuro placeholder:text-gray-400
+                border border-4 transition-all duration-200
+                focus:border-celeste
+                focus:ring-2
+                focus:ring-celeste/30
+                focus:scale-[1.01]
                   ${errores.stock
                     ? nuevosTipos.stock === "negativo"
                       ? "border-rojo"
