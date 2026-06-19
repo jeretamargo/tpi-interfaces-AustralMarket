@@ -442,15 +442,26 @@ export default function ProductoModal({
                 Estado
               </p>
               <div className="flex items-center justify-center gap-6">
-                <span 
+ 
+                  <span  
                 onClick={() => handleChange("estado", "desactivado")}
                 className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300 
                   w-32 text-right cursor-pointer select-none
                   ${form.estado === "desactivado" 
                   ? "text-rojo scale-110" 
-                  : "text-rojo/80 hover:text-rojo"}`}>
+                  : "text-rojo/80 hover:text-rojo" }`}>
                   DESACTIVADO
                 </span>
+                {/* SOLUCION 2 */}
+                {/* <span 
+                onClick={() => handleChange("estado", "desactivado")}
+                className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300 
+                  w-32 text-right cursor-pointer select-none
+                  ${form.estado === "desactivado" 
+                  ? "text-rojo scale-110" 
+                  : "text-sin-presionar hover:text-rojo" }`}>
+                  DESACTIVADO
+                </span> */}
 
                 {/* Switch */}
                 <button
