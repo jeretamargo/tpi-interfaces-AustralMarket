@@ -165,8 +165,7 @@ export default function ProductoModal({
     >
       {/* Modal wrapper — sin padding, para que header y body tengan colores distintos */}
       <div
-        className="rounded-2xl overflow-hidden shadow-2xl flex flex-col"
-        style={{ width: "650px" }}
+        className="rounded-2xl overflow-hidden shadow-2xl flex flex-col w-full max-w-[650px]" //responsive
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-titulo"
@@ -193,7 +192,7 @@ export default function ProductoModal({
           </div>
         ) : (
           <>
-        {/* ── CUERPO: azul ── */}
+        {/* CUERPO: azul*/}
         <div className="bg-azul px-8 py-6 overflow-y-auto">
           {/* Nombre */}
           <div className="mb-1">
@@ -369,12 +368,12 @@ export default function ProductoModal({
             <p className="text-sin-presionar text-sm font-medium text-center mb-3">
               Estado
             </p>
-            <div className="flex gap-3 justify-center">
+            <div className="flex flex-col md:flex-row gap-3 justify-center items-center">
               <button
                 type="button"
                 onClick={() => handleChange("estado", "desactivado")}
                 aria-pressed={form.estado === "desactivado"}
-                className={`flex-1 max-w-[190px] py-3 px-6 rounded-full font-titulo font-bold text-xs tracking-wider  transition-all
+                className={`w-full md:flex-1 md:max-w-[190px] py-3 px-6 rounded-full font-titulo font-bold text-xs tracking-wider  transition-all
                   ${
                     form.estado === "desactivado"
                       ? "bg-rojo text-blanco"
@@ -387,7 +386,7 @@ export default function ProductoModal({
                 type="button"
                 onClick={() => handleChange("estado", "disponible")}
                 aria-pressed={form.estado === "disponible"}
-                className={`flex-1 max-w-[190px] py-3 px-6 rounded-full font-titulo font-bold text-xs tracking-wider  transition-all
+                className={`w-full md:flex-1 md:max-w-[190px] py-3 px-6 rounded-full font-titulo font-bold text-xs tracking-wider  transition-all
                   ${
                     form.estado === "disponible"
                       ? "bg-verde text-blanco"
