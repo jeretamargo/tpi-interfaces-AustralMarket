@@ -436,61 +436,48 @@ export default function ProductoModal({
                 </div>
               </div>
               {/* Toggle Estado */}
-              <div className="mb-2">
-                <p className="text-sin-presionar text-sm font-medium text-center mb-3">
-                  Estado
-                </p>
-                
-                <div className="flex items-center justify-center gap-4">
-                  <span
-                    className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300
-              ${
-                form.estado === "desactivado"
-                  ? "text-rojo scale-110"
-                  : "text-rojo/80"
-              }`}
-                  >
-                    DESACTIVADO
-                  </span>
+        
+            <div className="mb-2">
+              <p className="text-sin-presionar text-sm font-medium text-center mb-3">
+                Estado
+              </p>
+              <div className="flex items-center justify-center gap-6">
+                <span 
+                onClick={() => handleChange("estado", "desactivado")}
+                className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300 
+                  w-32 text-right cursor-pointer select-none
+                  ${form.estado === "desactivado" 
+                  ? "text-rojo scale-110" 
+                  : "text-rojo/80 hover:text-rojo"}`}>
+                  DESACTIVADO
+                </span>
 
-                  {/* Switch */}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      handleChange(
-                        "estado",
-                        form.estado === "disponible"
-                          ? "desactivado"
-                          : "disponible",
-                      )
-                    }
-                    className={`relative w-20 h-9 rounded-full border-2 transition-all duration-300
-                ${form.estado === "disponible" ? "bg-verde/20 border-verde" : "bg-rojo/20 border-rojo"}`}
-                    aria-pressed={form.estado === "disponible"}
-                  >
-                    {/* Bolita */}
-                    <span
-                      className={`absolute top-1 w-6 h-6 rounded-full transition-all duration-300
-                ${
-                  form.estado === "disponible"
-                    ? "left-11 bg-verde shadow-[0_0_10px_rgba(6,172,23,0.9)]"
-                    : "left-1 bg-rojo shadow-[0_0_10px_rgba(172,6,6,0.9)]"
-                }`}
-                    />
-                  </button>
+                {/* Switch */}
+                <button
+                  type="button"
+                  onClick={() => handleChange("estado", form.estado === "disponible" ? "desactivado" : "disponible")}
+                  className={`relative shrink-0 w-20 h-9 rounded-full border-2 transition-all duration-300
+                    ${form.estado === "disponible" ? "bg-verde/20 border-verde" : "bg-rojo/20 border-rojo"}`}
+                  aria-pressed={form.estado === "disponible"}
+                >
+                  <span className={`absolute top-1 w-6 h-6 rounded-full transition-all duration-300
+                    ${form.estado === "disponible"
+                      ? "left-11 bg-verde shadow-[0_0_10px_rgba(6,172,23,0.9)]"
+                      : "left-1 bg-rojo shadow-[0_0_10px_rgba(172,6,6,0.9)]"}`}
+                  />
+                </button>
 
-                  <span
-                    className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300
-              ${
-                form.estado === "disponible"
-                  ? "text-verde scale-110"
-                  : "text-verde/80"
-              }`}
-                  >
-                    DISPONIBLE
-                  </span>
-                </div>
+                <span 
+                onClick={() => handleChange("estado", "disponible")}
+                className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300 
+                  w-32 text-left cursor-pointer select-none
+                  ${form.estado === "disponible" 
+                  ? "text-verde scale-110" 
+                  : "text-verde/80 hover:text-verde"}`}>
+                  DISPONIBLE
+                </span>
               </div>
+            </div>
             </div>
             {/* fin cuerpo azul */}
             {/* ── FOOTER: azul-oscuro ── */}
@@ -500,7 +487,8 @@ export default function ProductoModal({
                 onClick={handleCancelar}
                 className="flex-1 py-2 rounded-lg text-sm font-semibold font-texto
               border-2 border-rojo bg-rojo text-blanco
-              hover:bg-transparent hover:text-rojo transition-colors"
+              hover:bg-transparent hover:text-rojo transition-colors
+              cursor-pointer select-none"
               >
                 Cancelar
               </button>
@@ -510,7 +498,8 @@ export default function ProductoModal({
                 disabled={guardado}
                 className="flex-1 py-2 rounded-lg text-sm font-semibold font-texto
               border-2 border-verde bg-verde text-blanco
-              hover:bg-transparent hover:text-verde disabled:opacity-60 transition-colors"
+              hover:bg-transparent hover:text-verde disabled:opacity-60 transition-colors
+              cursor-pointer select-none"
               >
                 Guardar
               </button>
