@@ -135,7 +135,7 @@ export default function GestionProductos() {
 						<p className="text-sin-presionar text-lg mb-4">
 							No hay productos cargados en el sistema
 						</p>
-						<button onClick={abrirNuevo} className="bg-naranja hover:bg-hover-btn text-blanco px-4 py-2 rounded">
+						<button onClick={abrirNuevo} className="bg-naranja hover:bg-hover-btn text-blanco px-4 py-2 rounded cursor-pointer select-none">
 							+ Agregar Producto
 						</button>
 					</div>

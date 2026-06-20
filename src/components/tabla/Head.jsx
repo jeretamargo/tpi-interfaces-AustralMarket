@@ -4,7 +4,8 @@ export default function Head({onAgregarProducto }) {
 			<h2 className="text-2xl font-titulo">Gestión de productos</h2>
 			<button 
 			onClick={onAgregarProducto}
-			className="bg-celeste hover:bg-hover-btn text-blanco px-4 py-2 rounded"
+			className="bg-celeste hover:bg-hover-btn text-blanco px-4 py-2 rounded
+			cursor-pointer select-none"
 			>
 				Agregar Producto
 			</button>
