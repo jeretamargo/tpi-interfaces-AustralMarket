@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function TablaItem({ producto , onEditar  }) {
+export default function TablaItem({ producto , onEditar ,onEliminar  }) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	// Lógica de estilos según estado y stock
@@ -79,7 +79,8 @@ export default function TablaItem({ producto , onEditar  }) {
 					className="bg-naranja hover:bg-hover-btn text-blanco px-3 py-1 rounded text-sm hidden md:inline-block cursor-pointer select-none">
 						Editar
 					</button>
-					<button className="bg-rojo hover:bg-red-800 text-blanco px-3 py-1 rounded text-sm hidden md:inline-block cursor-pointer select-none">
+					<button onClick={() => onEliminar(producto)} 
+					className="bg-rojo hover:bg-red-800 text-blanco px-3 py-1 rounded text-sm hidden md:inline-block">
 						Eliminar
 					</button>
 
@@ -103,7 +104,9 @@ export default function TablaItem({ producto , onEditar  }) {
 						</svg>
 					</button>
 
-					<button className="w-12 h-12 flex items-center justify-center border-2 border-azul rounded-md hover:bg-azul/10 md:hidden">
+					<button 
+					onClick={() => onEliminar(producto)}
+					className="w-12 h-12 flex items-center justify-center border-2 border-azul rounded-md hover:bg-azul/10 md:hidden">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
