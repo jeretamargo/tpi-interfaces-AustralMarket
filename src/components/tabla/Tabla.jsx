@@ -23,7 +23,7 @@ export default function Tabla({ productos,onEditar ,onEliminar  }) {
   }, [productos]);
 
 	return (
-		<div className="w-full ">
+		<div className="w-full overflow-x-auto">
 			<table className="w-full border border-azul ">
 				<thead className="bg-azul">
 					<tr>
