@@ -8,23 +8,14 @@ import EliminarModal from "../EliminarModal";
 
 
 const productosIniciales = [
-	{id: 1,nombre: "Producto 1",descripcion:"lalalla",categoria: "Electrónica",precio: 299.99,stock: 50,estado: "Disponible",
+	{id: 1,nombre: "Producto 1",descripcion: "Auricular inalámbrico con conectividad Bluetooth y sonido de alta calidad.", categoria: "Electrónica",precio: 299.99,stock: 50,estado: "Disponible",
 	},
 	{
-		id: 2,
-		nombre: "Producto 2",
-		categoria: "Hogar",
-		precio: 199.99,
-		stock: 80,
-		estado: "Disponible",
+		id: 2,nombre: "Producto 2", descripcion: "Juego de organizadores para mantener ordenados los espacios del hogar.", categoria: "Hogar",precio: 199.99,stock: 80,estado: "Disponible",
 	},
 	{
 		id: 3,
-		nombre: "Producto 3",
-		categoria: "Oficina",
-		precio: 399.99,
-		stock: null,
-		estado: "Disponible",
+		nombre: "Producto 3",descripcion: "Set de artículos de oficina ideal para tareas administrativas y estudio.",categoria: "Oficina",precio: 399.99,stock: null,estado: "Disponible",
 	},
 	{
 		id: 4,
