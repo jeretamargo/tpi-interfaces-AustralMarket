@@ -2,8 +2,8 @@ import HeaderCell from "./HeadTabla";
 import TablaItem from "./TablaItem";
 import { useState, useEffect } from "react";
 
-export default function Tabla({ productos, onEditar }) {
-  const [sortedData, setSortedData] = useState(productos);
+export default function Tabla({ productos,onEditar ,onEliminar  }) {
+	const [sortedData, setSortedData] = useState(productos);
 
   const handleSort = (key, direction) => {
     if (!direction) {
@@ -22,44 +22,49 @@ export default function Tabla({ productos, onEditar }) {
     setSortedData(productos);
   }, [productos]);
 
-  return (
-    <div className="w-full overflow-x-auto">
-      <table className="w-full border border-azul   ">
-        <thead className="bg-azul">
-          <tr>
-            <HeaderCell
-              label="Nombre del producto"
-              sortKey="nombre"
-              onSort={handleSort}
-            />
-            <HeaderCell
-              label="Categoría"
-              sortKey="categoria"
-              onSort={handleSort}
-              className="hidden md:table-cell"
-            />
-            <HeaderCell
-              label="Precio"
-              sortKey="precio"
-              onSort={handleSort}
-              className="hidden md:table-cell"
-            />
-            <HeaderCell
-              label="Stock"
-              sortKey="stock"
-              onSort={handleSort}
-              className="hidden md:table-cell"
-            />
-            <th className="px-4 py-2 text-left">Estado</th>
-            <th className="px-4 py-2 text-left">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedData.map((p) => (
-            <TablaItem key={p.id} producto={p} onEditar={onEditar} />
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+	return (
+		<div className="w-full ">
+			<table className="w-full border border-azul ">
+				<thead className="bg-azul">
+					<tr>
+						<HeaderCell
+							label="Nombre del producto"
+							sortKey="nombre"
+							onSort={handleSort}
+						/>
+						<HeaderCell
+							label="Categoría"
+							sortKey="categoria"
+							onSort={handleSort}
+							className="hidden md:table-cell"
+						/>
+						<HeaderCell
+							label="Precio"
+							sortKey="precio"
+							onSort={handleSort}
+							className="hidden md:table-cell"
+						/>
+						<HeaderCell
+							label="Stock"
+							sortKey="stock"
+							onSort={handleSort}
+							className="hidden md:table-cell"
+						/>
+						<th className="px-4 py-2 text-left">Estado</th>
+						<th className="px-4 py-2 text-left">Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{sortedData.map((p) => (
+						<TablaItem 
+						key={p.id} 
+						producto={p} 
+						onEditar={onEditar}
+						onEliminar={onEliminar}
+						/>
+					))}
+				</tbody>
+			</table>
+		</div>
+	);
 }

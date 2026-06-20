@@ -4,6 +4,7 @@ import Paginacion from "./Paginacion";
 import Tabs from "./Tabs";
 import { useState } from "react";
 import ProductoModal from "../ProductoModal"
+import EliminarModal from "../EliminarModal";
 
 
 const productosIniciales = [
@@ -78,6 +79,26 @@ const categorias = [
 ];
 
 export default function GestionProductos() {
+	// logica de borrar producto
+	const [eliminarModalAbierto, setEliminarModalAbierto] = useState(false);
+	const [productoAEliminar, setProductoAEliminar] = useState(null);
+
+	const abrirEliminar = (producto) => {
+	setProductoAEliminar(producto);
+	setEliminarModalAbierto(true);
+	};
+
+	const confirmarEliminar = () => {
+	setProductos((prev) => prev.filter((p) => p.id !== productoAEliminar.id));
+	setEliminarModalAbierto(false);
+	setProductoAEliminar(null);
+	};
+
+	const cancelarEliminar = () => {
+	setEliminarModalAbierto(false);
+	setProductoAEliminar(null);
+	};
+
 	const [activeTab, setActiveTab] = useState("productos");
 	const [productos, setProductos] = useState(productosIniciales); // pa que cambie
 
@@ -119,15 +140,21 @@ export default function GestionProductos() {
 				onGuardar={handleGuardar}
 				onCancelar={cerrarModal}
 				categorias={categorias} //paso la categoria
-
 			/>
+			<EliminarModal
+			abierto={eliminarModalAbierto}
+			nombreProducto={productoAEliminar?.nombre || ""}
+			onConfirmar={confirmarEliminar}
+			onCancelar={cancelarEliminar}
+			/>
+
 			<Head onAgregarProducto={abrirNuevo}/>
 			<Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
 			{activeTab === "productos" ? (
 				productos.length > 0 ? (
 					<>
-						<Tabla productos={productos} onEditar={abrirEditar} />
+						<Tabla productos={productos} onEditar={abrirEditar} onEliminar={abrirEliminar} />
 						<Paginacion />
 					</>
 				) : (
