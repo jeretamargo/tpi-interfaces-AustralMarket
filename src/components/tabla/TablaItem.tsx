@@ -80,7 +80,7 @@ export default function TablaItem({ producto , onEditar ,onEliminar  }) {
 						Editar
 					</button>
 					<button onClick={() => onEliminar(producto)} 
-					className="bg-rojo hover:bg-red-800 text-blanco px-3 py-1 rounded text-sm hidden md:inline-block">
+					className="bg-rojo hover:bg-red-800 text-blanco px-3 py-1 rounded text-sm hidden md:inline-block cursor-pointer select-none">
 						Eliminar
 					</button>
 
