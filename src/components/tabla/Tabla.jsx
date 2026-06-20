@@ -1,26 +1,26 @@
 import HeaderCell from "./HeadTabla";
 import TablaItem from "./TablaItem";
-import { useState, useEffect  } from "react";
+import { useState, useEffect } from "react";
 
 export default function Tabla({ productos,onEditar ,onEliminar  }) {
 	const [sortedData, setSortedData] = useState(productos);
 
-	const handleSort = (key, direction) => {
-		if (!direction) {
-			setSortedData(productos); // reset
-			return;
-		}
-		const sorted = [...productos].sort((a, b) => {
-			if (direction === "asc") return a[key] > b[key] ? 1 : -1;
-			if (direction === "desc") return a[key] < b[key] ? 1 : -1;
-			return 0;
-		});
-		setSortedData(sorted);
-	};
-	//para actualizar cuando sea agrege/edite algo
-	useEffect(() => {
+  const handleSort = (key, direction) => {
+    if (!direction) {
+      setSortedData(productos); // reset
+      return;
+    }
+    const sorted = [...productos].sort((a, b) => {
+      if (direction === "asc") return a[key] > b[key] ? 1 : -1;
+      if (direction === "desc") return a[key] < b[key] ? 1 : -1;
+      return 0;
+    });
+    setSortedData(sorted);
+  };
+  //para actualizar cuando sea agrege/edite algo
+  useEffect(() => {
     setSortedData(productos);
-	}, [productos]);
+  }, [productos]);
 
 	return (
 		<div className="w-full ">
