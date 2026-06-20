@@ -54,16 +54,22 @@ export default function ProductoModal({
 
   useEffect(() => {
     if (productoEditar) {
+       // ── Lógica para determinar el estado según stock ──
+    let estadoCalculado = "disponible";
+    if (
+      productoEditar.estado === "Desactivado" ||
+      productoEditar.stock === null ||
+      productoEditar.stock === 0
+    ) {
+      estadoCalculado = "desactivado";
+    }
       setForm({
         nombre: productoEditar.nombre || "",
         descripcion: productoEditar.descripcion || "",
         categoria: productoEditar.categoria || "",
         precio: productoEditar.precio?.toString() || "",
         stock: productoEditar.stock?.toString() || "",
-        estado:
-          productoEditar.estado === "Desactivado"
-            ? "desactivado"
-            : "disponible",
+        estado: estadoCalculado,
       });
     } else {
       setForm(ESTADO_INICIAL);
@@ -303,9 +309,12 @@ export default function ProductoModal({
                     {/* Flecha */}
                     <span
                       className={`absolute right-3 top-1/2 -translate-y-1/2 transition-transform duration-200
-                      ${selectAbierto ? "rotate-180" : ""}`}
-                    >
-                      ▼
+                      ${selectAbierto ? "rotate-180" : ""}`}>
+                      <img
+                        src="/selector.svg"
+                        alt="abrir selector"
+                        className="w-5 h-5"
+                      />
                     </span>
                   </button>
 
