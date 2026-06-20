@@ -76,7 +76,7 @@ export default function TablaItem({ producto , onEditar ,onEliminar  }) {
 				<td className="px-4 py-2 flex flex-row gap-2 align-middle">
 					<button
 					onClick={() => onEditar(producto)}
-					className="bg-naranja hover:bg-hover-btn text-blanco px-3 py-1 rounded text-sm hidden md:inline-block">
+					className="bg-naranja hover:bg-hover-btn text-blanco px-3 py-1 rounded text-sm hidden md:inline-block cursor-pointer select-none">
 						Editar
 					</button>
 					<button onClick={() => onEliminar(producto)} 
