@@ -291,18 +291,19 @@ export default function ProductoModal({
                   <button
                     type="button"
                     onClick={() => setSelectAbierto((prev) => !prev)}
+                    onBlur={() => setTimeout(() => setSelectAbierto(false), 150)}
                     className={`w-full px-3 py-2 rounded-lg text-sm outline-none font-texto
-        bg-blanco border border-4 cursor-pointer text-left
-        transition-all duration-200
-        focus:border-celeste focus:ring-2 focus:ring-celeste/30 focus:scale-[1.01]
-        ${form.categoria ? "text-azul-oscuro" : "text-gray-400"}
-        ${errores.categoria ? "border-warning" : "border-blanco/0"}`}
+                    bg-blanco border border-4 cursor-pointer text-left
+                    transition-all duration-200
+                    focus:border-celeste focus:ring-2 focus:ring-celeste/30 focus:scale-[1.01]
+                    ${form.categoria ? "text-azul-oscuro" : "text-gray-400"}
+                    ${errores.categoria ? "border-warning" : "border-blanco/0"}`}
                   >
                     {form.categoria || "-- Sin Categoria Seleccionada --"}
                     {/* Flecha */}
                     <span
                       className={`absolute right-3 top-1/2 -translate-y-1/2 transition-transform duration-200
-        ${selectAbierto ? "rotate-180" : ""}`}
+                      ${selectAbierto ? "rotate-180" : ""}`}
                     >
                       ▼
                     </span>
