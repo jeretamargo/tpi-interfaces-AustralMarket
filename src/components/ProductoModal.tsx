@@ -311,7 +311,7 @@ export default function ProductoModal({
 
                   {/* Dropdown de opciones */}
                   {selectAbierto && (
-                    <div className="absolute z-10 w-full mt-1 bg-blanco border-4 border-celeste rounded-lg shadow-lg overflow-y-auto max-h-50">
+                    <div className="absolute z-10 w-full mt-1 bg-blanco border-4 border-celeste rounded-lg shadow-lg overflow-y-auto max-h-47">
                       <div
                         onClick={() => {
                           handleChange("categoria", "");
@@ -329,8 +329,8 @@ export default function ProductoModal({
                             setSelectAbierto(false);
                           }}
                           className={`px-3 py-2 text-sm cursor-pointer transition-colors
-              hover:bg-celeste hover:text-blanco
-              ${form.categoria === cat.nombre ? "bg-celeste/20 text-azul-oscuro font-semibold" : "text-azul-oscuro"}`}
+                            hover:bg-celeste hover:text-blanco
+                            ${form.categoria === cat.nombre ? "bg-celeste/20 text-azul-oscuro font-semibold" : "text-azul-oscuro"}`}
                         >
                           {cat.nombre}
                         </div>
