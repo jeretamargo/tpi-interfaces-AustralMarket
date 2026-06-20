@@ -442,7 +442,6 @@ export default function ProductoModal({
                 Estado
               </p>
               <div className="flex items-center justify-center gap-6">
- 
                   <span  
                 onClick={() => handleChange("estado", "desactivado")}
                 className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300 
@@ -467,7 +466,7 @@ export default function ProductoModal({
                 <button
                   type="button"
                   onClick={() => handleChange("estado", form.estado === "disponible" ? "desactivado" : "disponible")}
-                  className={`relative shrink-0 w-20 h-9 rounded-full border-2 transition-all duration-300
+                  className={`relative shrink-0 w-20 h-9 rounded-full border-2 transition-all duration-300 cursor-pointer select-none
                     ${form.estado === "disponible" ? "bg-verde/20 border-verde" : "bg-rojo/20 border-rojo"}`}
                   aria-pressed={form.estado === "disponible"}
                 >
