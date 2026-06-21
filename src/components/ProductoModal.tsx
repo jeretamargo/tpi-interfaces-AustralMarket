@@ -188,11 +188,11 @@ export default function ProductoModal({
         aria-modal="true"
         aria-labelledby="modal-titulo"
       >
-        {/* ── HEADER: azul-oscuro ── */}
-        <div className="bg-azul-oscuro px-8 py-2">
+        {/* ── HEADER: azul-── */}
+        <div className="bg-azul px-8 py-2">
           <h2
             id="modal-titulo"
-            className="font-titulo text-blanco text-[28px] font-normal text-center tracking-widest"
+            className="font-titulo text-blanco text-[32px] font-normal text-center tracking-widest"
           >
             {titulo}
           </h2>
@@ -216,7 +216,7 @@ export default function ProductoModal({
         ) : (
           <>
             {/* CUERPO: azul*/}
-            <div className="bg-azul px-8 py-6 overflow-visible">
+            <div className="bg-azul-oscuro px-8 py-6 overflow-visible">
               {/* Nombre */}
               <div className="mb-1">
                 <label
@@ -320,7 +320,7 @@ export default function ProductoModal({
 
                   {/* Dropdown de opciones */}
                   {selectAbierto && (
-                    <div className="absolute z-10 w-full mt-1 bg-blanco border-4 border-celeste rounded-lg shadow-lg overflow-y-auto max-h-47">
+                    <div className="absolute z-10 w-full mt-1 bg-blanco border-4 border-celeste rounded-lg shadow-lg overflow-y-auto max-h-49">
                       <div
                         onClick={() => {
                           handleChange("categoria", "");
@@ -481,7 +481,7 @@ export default function ProductoModal({
             </div>
             {/* fin cuerpo azul */}
             {/* ── FOOTER: azul-oscuro ── */}
-            <div className="bg-azul-oscuro px-8 py-4 flex gap-3 rounded-b-2xl">
+            <div className="bg-azul px-8 py-4 flex gap-3 rounded-b-2xl">
               <button
                 type="button"
                 onClick={handleCancelar}
