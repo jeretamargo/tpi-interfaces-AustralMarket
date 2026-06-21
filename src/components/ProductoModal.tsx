@@ -447,57 +447,37 @@ export default function ProductoModal({
               </div>
               {/* Toggle Estado */}
         
-            <div className="mb-2">
-              <p className="text-sin-presionar text-sm font-medium text-center mb-3">
-                Estado
-              </p>
-              <div className="flex items-center justify-center gap-6">
-                  <span  
-                onClick={() => handleChange("estado", "desactivado")}
-                className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300 
-                  w-32 text-right cursor-pointer select-none
-                  ${form.estado === "desactivado" 
-                  ? "text-rojo scale-110" 
-                  : "text-rojo/80 hover:text-rojo" }`}>
-                  DESACTIVADO
-                </span>
-                {/* SOLUCION 2 */}
-                {/* <span 
-                onClick={() => handleChange("estado", "desactivado")}
-                className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300 
-                  w-32 text-right cursor-pointer select-none
-                  ${form.estado === "desactivado" 
-                  ? "text-rojo scale-110" 
-                  : "text-sin-presionar hover:text-rojo" }`}>
-                  DESACTIVADO
-                </span> */}
+          {/* Toggle Estado */}
+<div className="mb-2">
+  <p className="text-sin-presionar text-sm font-medium text-center mb-3">
+    Estado
+  </p>
+  <div className="flex justify-center">
+    <button
+  type="button"
+  onClick={() => handleChange("estado", form.estado === "disponible" ? "desactivado" : "disponible")}
+  aria-pressed={form.estado === "disponible"}
+  className={`relative w-80 h-12 rounded-full border-2 transition-all duration-300 cursor-pointer select-none
+    ${form.estado === "disponible" ? "bg-verde/20 border-verde" : "bg-rojo/20 border-rojo"}`}
+>
+  {/* Píldora deslizante */}
+  <span className={`absolute inset-y-1 w-[50%] rounded-full transition-all duration-300 flex items-center justify-center text-xs font-titulo font-bold text-blanco
+    ${form.estado === "disponible"
+      ? "left-[49%] bg-verde shadow-[0_0_10px_rgba(6,172,23,0.6)]"
+      : "left-1 bg-rojo shadow-[0_0_10px_rgba(172,6,6,0.6)]"}`}>
+    {form.estado === "disponible" ? "DISPONIBLE" : "DESACTIVADO"}
+  </span>
 
-                {/* Switch */}
-                <button
-                  type="button"
-                  onClick={() => handleChange("estado", form.estado === "disponible" ? "desactivado" : "disponible")}
-                  className={`relative shrink-0 w-20 h-9 rounded-full border-2 transition-all duration-300 cursor-pointer select-none
-                    ${form.estado === "disponible" ? "bg-verde/20 border-verde" : "bg-rojo/20 border-rojo"}`}
-                  aria-pressed={form.estado === "disponible"}
-                >
-                  <span className={`absolute top-1 w-6 h-6 rounded-full transition-all duration-300
-                    ${form.estado === "disponible"
-                      ? "left-11 bg-verde shadow-[0_0_10px_rgba(6,172,23,0.9)]"
-                      : "left-1 bg-rojo shadow-[0_0_10px_rgba(172,6,6,0.9)]"}`}
-                  />
-                </button>
+  {/* Texto inactivo */}
+  <span className={`absolute w-[50%] text-xs font-titulo font-bold text-blanco/40 top-1/2 -translate-y-1/2 text-center transition-all duration-300
+    ${form.estado === "disponible" ? "left-0" : "right-0"}`}>
+    {form.estado === "disponible" ? "DESACTIVADO" : "DISPONIBLE"}
+  </span>
+</button>
 
-                <span 
-                onClick={() => handleChange("estado", "disponible")}
-                className={`text-sm font-titulo font-bold tracking-wider transition-all duration-300 
-                  w-32 text-left cursor-pointer select-none
-                  ${form.estado === "disponible" 
-                  ? "text-verde scale-110" 
-                  : "text-verde/80 hover:text-verde"}`}>
-                  DISPONIBLE
-                </span>
-              </div>
-            </div>
+  </div>
+</div>
+
             </div>
             {/* fin cuerpo azul */}
             {/* ── FOOTER: azul-oscuro ── */}
