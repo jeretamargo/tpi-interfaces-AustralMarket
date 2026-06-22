@@ -9,7 +9,7 @@ import EliminarModal from "../EliminarModal";
 const productosIniciales = [
 	{
 		id: 1,
-		nombre: "Producto 1",
+		nombre: "ElectroMax 3",
 		descripcion:
 			"Auricular inalámbrico con conectividad Bluetooth y sonido de alta calidad.",
 		categoria: "Electrónica",
@@ -19,7 +19,7 @@ const productosIniciales = [
 	},
 	{
 		id: 2,
-		nombre: "Producto 2",
+		nombre: "HomeStyle Organizer",
 		descripcion:
 			"Juego de organizadores para mantener ordenados los espacios del hogar.",
 		categoria: "Hogar",
@@ -29,7 +29,7 @@ const productosIniciales = [
 	},
 	{
 		id: 3,
-		nombre: "Producto 3",
+		nombre: "OfficePro 4",
 		descripcion:
 			"Set de artículos de oficina ideal para tareas administrativas y estudio.",
 		categoria: "Oficina",
@@ -39,7 +39,7 @@ const productosIniciales = [
 	},
 	{
 		id: 4,
-		nombre: "Producto 4",
+		nombre: "ToolMaster 90",
 		categoria: "Herramientas",
 		precio: 89.99,
 		stock: 100,
@@ -47,7 +47,7 @@ const productosIniciales = [
 	},
 	{
 		id: 5,
-		nombre: "Producto 5",
+		nombre: "GadgetGo 5",
 		categoria: "Dispositivos",
 		precio: 49.99,
 		stock: 200,
@@ -55,7 +55,7 @@ const productosIniciales = [
 	},
 	{
 		id: 6,
-		nombre: "Producto 6",
+		nombre: "KitchenMaster 600",
 		categoria: "Electrodomésticos",
 		precio: 599.99,
 		stock: null,
@@ -63,7 +63,7 @@ const productosIniciales = [
 	},
 	{
 		id: 7,
-		nombre: "Producto 7",
+		nombre: "Machina 2",
 		categoria: "Máquinas",
 		precio: 249.99,
 		stock: 60,
@@ -71,7 +71,7 @@ const productosIniciales = [
 	},
 	{
 		id: 8,
-		nombre: "Producto 8",
+		nombre: "ElectroLite 13",
 		categoria: "Electrónica",
 		precio: 129.99,
 		stock: 9,
