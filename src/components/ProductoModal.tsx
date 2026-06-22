@@ -216,7 +216,7 @@ export default function ProductoModal({
         ) : (
           <>
             {/* CUERPO: azul*/}
-            <div className="bg-azul-oscuro px-8 py-6 overflow-visible">
+            <div className="bg-azul-oscuro px-8 py-6 overflow-y-auto max-h-[70vh]">
               {/* Nombre */}
               <div className="mb-1">
                 <label
