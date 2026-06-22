@@ -192,7 +192,7 @@ export default function ProductoModal({
         <div className="bg-azul px-8 py-2">
           <h2
             id="modal-titulo"
-            className="font-titulo text-blanco text-[32px] font-normal text-center tracking-widest"
+            className="font-titulo text-blanco text-[30px] font-normal text-center tracking-widest"
           >
             {titulo}
           </h2>
