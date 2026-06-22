@@ -3,19 +3,39 @@ import Tabla from "./Tabla";
 import Paginacion from "./Paginacion";
 import Tabs from "./Tabs";
 import { useState } from "react";
-import ProductoModal from "../ProductoModal"
+import ProductoModal from "../ProductoModal";
 import EliminarModal from "../EliminarModal";
 
-
 const productosIniciales = [
-	{id: 1,nombre: "Producto 1",descripcion: "Auricular inalámbrico con conectividad Bluetooth y sonido de alta calidad.", categoria: "Electrónica",precio: 299.99,stock: 50,estado: "Disponible",
+	{
+		id: 1,
+		nombre: "Producto 1",
+		descripcion:
+			"Auricular inalámbrico con conectividad Bluetooth y sonido de alta calidad.",
+		categoria: "Electrónica",
+		precio: 299.99,
+		stock: 50,
+		estado: "Disponible",
 	},
 	{
-		id: 2,nombre: "Producto 2", descripcion: "Juego de organizadores para mantener ordenados los espacios del hogar.", categoria: "Hogar",precio: 199.99,stock: 80,estado: "Disponible",
+		id: 2,
+		nombre: "Producto 2",
+		descripcion:
+			"Juego de organizadores para mantener ordenados los espacios del hogar.",
+		categoria: "Hogar",
+		precio: 199.99,
+		stock: 80,
+		estado: "Disponible",
 	},
 	{
 		id: 3,
-		nombre: "Producto 3",descripcion: "Set de artículos de oficina ideal para tareas administrativas y estudio.",categoria: "Oficina",precio: 399.99,stock: null,estado: "Disponible",
+		nombre: "Producto 3",
+		descripcion:
+			"Set de artículos de oficina ideal para tareas administrativas y estudio.",
+		categoria: "Oficina",
+		precio: 399.99,
+		stock: null,
+		estado: "Disponible",
 	},
 	{
 		id: 4,
@@ -75,30 +95,30 @@ export default function GestionProductos() {
 	const [productoAEliminar, setProductoAEliminar] = useState(null);
 
 	const abrirEliminar = (producto) => {
-	setProductoAEliminar(producto);
-	setEliminarModalAbierto(true);
+		setProductoAEliminar(producto);
+		setEliminarModalAbierto(true);
 	};
 
 	const confirmarEliminar = () => {
-	setProductos((prev) => prev.filter((p) => p.id !== productoAEliminar.id));
-	setEliminarModalAbierto(false);
-	setProductoAEliminar(null);
+		setProductos((prev) => prev.filter((p) => p.id !== productoAEliminar.id));
+		setEliminarModalAbierto(false);
+		setProductoAEliminar(null);
 	};
 
 	const cancelarEliminar = () => {
-	setEliminarModalAbierto(false);
-	setProductoAEliminar(null);
+		setEliminarModalAbierto(false);
+		setProductoAEliminar(null);
 	};
 
 	const [activeTab, setActiveTab] = useState("productos");
 	const [productos, setProductos] = useState(productosIniciales); // pa que cambie
 
-	// estado del modal 
+	// estado del modal
 	const [modalAbierto, setModalAbierto] = useState(false);
 	const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 	const abrirNuevo = () => {
-    setProductoSeleccionado(null);   // sin datos = modo NUEVO
-    setModalAbierto(true);
+		setProductoSeleccionado(null); // sin datos = modo NUEVO
+		setModalAbierto(true);
 	};
 
 	const abrirEditar = (producto) => {
@@ -111,14 +131,14 @@ export default function GestionProductos() {
 		setProductoSeleccionado(null);
 	};
 	const handleGuardar = (producto) => {
-    if (productoSeleccionado) {
-      // EDITAR
-		setProductos((prev) =>
-			prev.map((p) => (p.id === producto.id ? producto : p))
-		);
+		if (productoSeleccionado) {
+			// EDITAR
+			setProductos((prev) =>
+				prev.map((p) => (p.id === producto.id ? producto : p)),
+			);
 		} else {
-		//NUEVO
-		setProductos((prev) => [...prev, producto]);
+			//NUEVO
+			setProductos((prev) => [...prev, producto]);
 		}
 		//cerrarModal();
 	};
@@ -133,19 +153,23 @@ export default function GestionProductos() {
 				categorias={categorias} //paso la categoria
 			/>
 			<EliminarModal
-			abierto={eliminarModalAbierto}
-			nombreProducto={productoAEliminar?.nombre || ""}
-			onConfirmar={confirmarEliminar}
-			onCancelar={cancelarEliminar}
+				abierto={eliminarModalAbierto}
+				nombreProducto={productoAEliminar?.nombre || ""}
+				onConfirmar={confirmarEliminar}
+				onCancelar={cancelarEliminar}
 			/>
 
-			<Head onAgregarProducto={abrirNuevo}/>
+			<Head onAgregarProducto={abrirNuevo} />
 			<Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
 			{activeTab === "productos" ? (
 				productos.length > 0 ? (
 					<>
-						<Tabla productos={productos} onEditar={abrirEditar} onEliminar={abrirEliminar} />
+						<Tabla
+							productos={productos}
+							onEditar={abrirEditar}
+							onEliminar={abrirEliminar}
+						/>
 						<Paginacion />
 					</>
 				) : (
@@ -153,7 +177,10 @@ export default function GestionProductos() {
 						<p className="text-sin-presionar text-lg mb-4">
 							No hay productos cargados en el sistema
 						</p>
-						<button onClick={abrirNuevo} className="bg-naranja hover:bg-hover-btn text-blanco px-4 py-2 rounded cursor-pointer select-none">
+						<button
+							onClick={abrirNuevo}
+							className="bg-naranja hover:bg-orange-500 text-blanco px-4 py-2 rounded cursor-pointer select-none"
+						>
 							+ Agregar Producto
 						</button>
 					</div>
@@ -182,7 +209,7 @@ export default function GestionProductos() {
 					<p className="text-sin-presionar text-lg mb-4 ">
 						No hay productos cargados en el sistema
 					</p>
-					<button className="bg-naranja hover:bg-hover-btn text-blanco px-4 py-2 rounded">
+					<button className="bg-naranja hover:bg-orange-500 text-blanco px-4 py-2 rounded">
 						+ Agregar Producto
 					</button>
 				</div>

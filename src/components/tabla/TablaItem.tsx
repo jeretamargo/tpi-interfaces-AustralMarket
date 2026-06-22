@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function TablaItem({ producto , onEditar ,onEliminar  }) {
+export default function TablaItem({ producto, onEditar, onEliminar }) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	// Lógica de estilos según estado y stock
@@ -75,19 +75,23 @@ export default function TablaItem({ producto , onEditar ,onEliminar  }) {
 				{/* Acciones */}
 				<td className="px-4 py-2 flex flex-row gap-2 align-middle">
 					<button
-					onClick={() => onEditar(producto)}
-					className="bg-naranja hover:bg-hover-btn text-blanco px-3 py-1 rounded text-sm hidden md:inline-block cursor-pointer select-none">
+						onClick={() => onEditar(producto)}
+						className="bg-naranja hover:bg-orange-500 text-blanco px-3 py-1 rounded text-sm hidden md:inline-block cursor-pointer select-none"
+					>
 						Editar
 					</button>
-					<button onClick={() => onEliminar(producto)} 
-					className="bg-rojo hover:bg-red-800 text-blanco px-3 py-1 rounded text-sm hidden md:inline-block cursor-pointer select-none">
+					<button
+						onClick={() => onEliminar(producto)}
+						className="bg-rojo hover:bg-red-500 text-blanco px-3 py-1 rounded text-sm hidden md:inline-block cursor-pointer select-none"
+					>
 						Eliminar
 					</button>
 
 					{/* Iconos en móvil */}
-					<button 
-					onClick={() => onEditar(producto)}
-					className="w-12 h-12 flex items-center justify-center border-2 border-azul rounded-md hover:bg-azul/10 md:hidden">
+					<button
+						onClick={() => onEditar(producto)}
+						className="w-12 h-12 flex items-center justify-center border-2 border-azul rounded-md hover:bg-azul/10 md:hidden"
+					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -104,9 +108,10 @@ export default function TablaItem({ producto , onEditar ,onEliminar  }) {
 						</svg>
 					</button>
 
-					<button 
-					onClick={() => onEliminar(producto)}
-					className="w-12 h-12 flex items-center justify-center border-2 border-azul rounded-md hover:bg-azul/10 md:hidden">
+					<button
+						onClick={() => onEliminar(producto)}
+						className="w-12 h-12 flex items-center justify-center border-2 border-azul rounded-md hover:bg-azul/10 md:hidden"
+					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
