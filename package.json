@@ -10,6 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/nunito-sans": "^5.2.7",
+    "@fontsource-variable/reddit-mono": "^5.2.8",
+    "@fontsource-variable/rubik": "^5.2.8",
+    "@fontsource/nunito-sans": "^5.2.7",
+    "@fontsource/reddit-mono": "^5.2.8",
+    "@fontsource/rubik": "^5.2.8",
+    "@tailwindcss/vite": "^4.3.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router": "^7.15.1"

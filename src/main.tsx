@@ -1,10 +1,18 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App";
-import { BrowserRouter } from "react-router";
+import Login from "./pages/Login";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import ListaProductos from "./pages/ListaProdcutos";
+import { AuthProvider } from "./context/AuthContext";
 
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <AuthProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/productos" element={<ListaProductos />} />
+      </Routes>
+    </BrowserRouter>
+  </AuthProvider>,
 );

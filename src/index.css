@@ -1,1 +1,23 @@
 @import "tailwindcss";
+@import "@fontsource-variable/nunito-sans";
+@import "@fontsource-variable/rubik";
+@import "@fontsource-variable/reddit-mono";
+
+@theme {
+  --font-texto: "Nunito Sans Variable", sans-serif;
+  --font-titulo: "Rubik", sans-serif;
+  --font-numeros: "Reddit Mono", monospace;
+}
+
+@theme {
+  --color-azul-oscuro: #022036;
+  --color-azul: #092d4a;
+  --color-celeste: #1d7584;
+  --color-naranja: #e48c25;
+  --color-blanco: #fcfeff;
+  --color-rojo: #ac0606;
+  --color-verde: #06ac17;
+  --color-sin-presionar: #d9d9d9;
+  --color-warning: #ffdd00;
+  --color-hover-btn: #009fba;
+}
