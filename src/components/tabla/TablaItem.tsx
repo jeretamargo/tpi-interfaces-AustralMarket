@@ -59,7 +59,7 @@ export default function TablaItem({ producto, onEditar, onEliminar }) {
 					${producto.precio.toFixed(2)}
 				</td>
 				<td className="px-4 py-2 font-numeros text-right hidden md:table-cell">
-					{producto.stock ?? "-"}
+					{producto.stock > 0 ? producto.stock : "-"}
 				</td>
 
 				{/* Estado */}
