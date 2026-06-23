@@ -133,19 +133,23 @@ export default function TablaItem({ producto, onEditar, onEliminar }) {
 			{/* Fila extra para acordeón en móvil */}
 			{isOpen && (
 				<tr className="md:hidden bg-azul hover:bg-celeste rounded">
-					<td colSpan={6} className="px-4 py-2 text-sm text-naranja">
-						<div className="flex flex-col gap-1">
+					<td colSpan={6} className="px-4 py-2  ">
+						<div className="flex flex-col gap-1 m-1">
 							<p>
-								<span className="font-bold">Categoría:</span>{" "}
-								{producto.categoria}
+								<span className="font-bold ">Categoría: </span>{" "}
+								<a className="text-naranja">{producto.categoria} </a>
 							</p>
 							<p>
-								<span className="font-bold">Precio:</span> $
-								{producto.precio.toFixed(2)}
+								<span className="font-bold ">Precio: </span>
+								<a className="text-naranja font-numeros">
+									${producto.precio.toFixed(2)}{" "}
+								</a>
 							</p>
 							<p>
-								<span className="font-bold">Stock:</span>{" "}
-								{producto.stock ?? "-"}
+								<span className="font-bold">Stock: </span>{" "}
+								<a className="text-naranja font-numeros">
+									{producto.stock ?? "-"}{" "}
+								</a>
 							</p>
 						</div>
 					</td>
